@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-gray-50 text-gray-900;
+    cursor: default;
+  }
+  
+  /* Custom cursor trail effect */
+  * {
+    cursor: inherit;
+  }
+  
+  a, button {
+    cursor: pointer;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-blue-600;
+  }
+  
+  .delay-700 {
+    animation-delay: 700ms;
+  }
+  
+  /* Magnetic button effect */
+  .magnetic-button {
+    transition: transform 0.2s ease-out;
+  }
+  
+  .magnetic-button:hover {
+    transform: translateY(-2px);
+  }
+  
+  /* Smooth hover scale */
+  .hover-lift {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+  
+  /* Floating animation for photo */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  /* Perspective for 3D effect */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+}
+
