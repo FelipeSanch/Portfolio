@@ -11,6 +11,7 @@ const LandingPage = memo(({ onEnter }: LandingPageProps) => {
   const [showText, setShowText] = useState(true)
 
   const handleClick = () => {
+    if (triggerRipple) return // Prevent multiple clicks
     setTriggerRipple(true)
     setShowText(false)
   }

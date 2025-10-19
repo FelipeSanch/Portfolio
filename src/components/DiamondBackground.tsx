@@ -12,6 +12,8 @@ interface Diamond {
   hue: number
   originalX: number
   originalY: number
+  randomAngleOffset: number
+  randomDrift: number
 }
 
 interface DiamondBackgroundProps {
@@ -24,6 +26,7 @@ const DiamondBackground = memo(({ onTransitionComplete, triggerRipple }: Diamond
   const diamondsRef = useRef<Diamond[]>([])
   const animationRef = useRef<number>()
   const clickPosRef = useRef({ x: 0, y: 0 })
+  const transitionTriggeredRef = useRef(false)
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -31,6 +34,9 @@ const DiamondBackground = memo(({ onTransitionComplete, triggerRipple }: Diamond
 
     const ctx = canvas.getContext('2d')
     if (!ctx) return
+
+    // Reset transition flag
+    transitionTriggeredRef.current = false
 
     // Initialize diamonds in an elegant grid pattern
     const initDiamonds = () => {
@@ -56,6 +62,8 @@ const DiamondBackground = memo(({ onTransitionComplete, triggerRipple }: Diamond
             hue: 215, // Deep elegant blue
             originalX: x,
             originalY: y,
+            randomAngleOffset: (Math.random() - 0.5) * 0.12,
+            randomDrift: (Math.random() - 0.5) * 25,
           })
         }
       }
@@ -146,7 +154,7 @@ const DiamondBackground = memo(({ onTransitionComplete, triggerRipple }: Diamond
           }
 
           if (diamond.rippleDelay <= 0) {
-            diamond.rippleProgress += 0.016 // Smoother, consistent 60fps
+            diamond.rippleProgress = Math.min(1, diamond.rippleProgress + 0.016) // Cap at 1
             
             // Smooth, controlled rotation with easing
             const rotationEase = Math.sin(diamond.rippleProgress * Math.PI * 0.5)
@@ -154,14 +162,13 @@ const DiamondBackground = memo(({ onTransitionComplete, triggerRipple }: Diamond
             
             // Elegant outward motion with smooth acceleration
             const explosionForce = Math.pow(diamond.rippleProgress, 2.2) * 450
-            const drift = (Math.random() - 0.5) * 25 // Subtle variation
             
-            const dx = diamond.x - clickPosRef.current.x
-            const dy = diamond.y - clickPosRef.current.y
-            const angle = Math.atan2(dy, dx) + (Math.random() - 0.5) * 0.12
+            const dx = diamond.originalX - clickPosRef.current.x
+            const dy = diamond.originalY - clickPosRef.current.y
+            const angle = Math.atan2(dy, dx) + diamond.randomAngleOffset
             
-            diamond.x = diamond.originalX + Math.cos(angle) * (explosionForce + drift)
-            diamond.y = diamond.originalY + Math.sin(angle) * (explosionForce + drift) + Math.pow(diamond.rippleProgress, 1.8) * 70
+            diamond.x = diamond.originalX + Math.cos(angle) * (explosionForce + diamond.randomDrift)
+            diamond.y = diamond.originalY + Math.sin(angle) * (explosionForce + diamond.randomDrift) + Math.pow(diamond.rippleProgress, 1.8) * 70
             
             // Smooth fade and shrink with easing
             const fadeScale = 1 - Math.pow(diamond.rippleProgress, 1.5) * 0.35
@@ -178,15 +185,16 @@ const DiamondBackground = memo(({ onTransitionComplete, triggerRipple }: Diamond
         }
       })
 
-      // Check if transition is complete - smooth handoff
-      if (triggerRipple && diamondsRef.current.every(d => d.rippleProgress >= 0.95)) {
+      // Check if transition is complete - smooth handoff (only trigger once)
+      if (triggerRipple && !transitionTriggeredRef.current && diamondsRef.current.every(d => d.rippleProgress >= 0.95)) {
+        transitionTriggeredRef.current = true
         // Allow a brief moment for final fade, then transition
         setTimeout(() => {
           if (animationRef.current) {
             cancelAnimationFrame(animationRef.current)
           }
           onTransitionComplete()
-        }, 300) // Reduced delay for snappier transition
+        }, 300)
         return
       }
 
