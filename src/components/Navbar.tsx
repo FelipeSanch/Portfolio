@@ -1,11 +1,11 @@
 import { Menu, X, FileText } from 'lucide-react'
-import { useState } from 'react'
+import { useState, memo } from 'react'
 
 interface NavbarProps {
   isScrolled: boolean
 }
 
-const Navbar = ({ isScrolled }: NavbarProps) => {
+const Navbar = memo(({ isScrolled }: NavbarProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const navLinks = [
@@ -27,43 +27,43 @@ const Navbar = ({ isScrolled }: NavbarProps) => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
-          <a
-            href="#hero"
-            className={`text-2xl font-bold transition-colors ${
-              isScrolled 
-                ? 'bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent' 
-                : 'text-white'
-            }`}
-          >
-            Felipe Sanchez
-          </a>
+              <a
+                href="#hero"
+                className={`text-2xl font-bold transition-colors ${
+                  isScrolled 
+                    ? 'bg-gradient-to-r from-cyan-600 to-purple-600 bg-clip-text text-transparent' 
+                    : 'text-white'
+                }`}
+              >
+                Felipe Sanchez
+              </a>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className={`font-medium transition-colors relative group ${
-                  isScrolled ? 'text-gray-700 hover:text-blue-600' : 'text-white hover:text-blue-200'
-                }`}
-              >
-                {link.label}
-                <span className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all group-hover:w-full`}></span>
-              </a>
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    className={`font-medium transition-colors relative group ${
+                      isScrolled ? 'text-gray-700 hover:text-purple-600' : 'text-white hover:text-purple-300'
+                    }`}
+                  >
+                    {link.label}
+                    <span className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-500 to-purple-500 transition-all group-hover:w-full`}></span>
+                  </a>
             ))}
-            <a
-              href="/resume.pdf"
-              download
-              className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all ${
-                isScrolled
-                  ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-500 hover:to-purple-500 shadow-md hover:shadow-lg'
-                  : 'bg-white/10 backdrop-blur-sm text-white border border-white/20 hover:bg-white/20'
-              }`}
-            >
-              <FileText size={16} />
-              Resume
-            </a>
+                <a
+                  href="/resume.pdf"
+                  download
+                  className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all ${
+                    isScrolled
+                      ? 'bg-gradient-to-r from-cyan-600 to-purple-600 text-white hover:from-cyan-500 hover:to-purple-500 shadow-md'
+                      : 'bg-slate-800/80 text-white border border-slate-700 hover:bg-slate-700'
+                  }`}
+                >
+                  <FileText size={16} />
+                  Resume
+                </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -81,30 +81,32 @@ const Navbar = ({ isScrolled }: NavbarProps) => {
         {isMenuOpen && (
           <div className="md:hidden mt-4 bg-white rounded-2xl shadow-xl p-4 space-y-2">
             {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="block text-gray-700 hover:text-blue-600 hover:bg-blue-50 px-4 py-3 rounded-lg transition-colors font-medium"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {link.label}
-              </a>
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    className="block text-gray-700 hover:text-cyan-600 hover:bg-cyan-50 px-4 py-3 rounded-lg transition-colors font-medium"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {link.label}
+                  </a>
             ))}
-            <a
-              href="/resume.pdf"
-              download
-              className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-3 rounded-lg hover:from-blue-500 hover:to-purple-500 transition-all font-medium"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              <FileText size={16} />
-              Download Resume
-            </a>
+                <a
+                  href="/resume.pdf"
+                  download
+                  className="flex items-center gap-2 bg-gradient-to-r from-cyan-600 to-purple-600 text-white px-4 py-3 rounded-lg hover:from-cyan-500 hover:to-purple-500 transition-all font-medium"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <FileText size={16} />
+                  Download Resume
+                </a>
           </div>
         )}
       </div>
     </nav>
   )
-}
+});
+
+Navbar.displayName = 'Navbar';
 
 export default Navbar
 

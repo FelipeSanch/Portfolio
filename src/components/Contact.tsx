@@ -1,6 +1,7 @@
 import { Mail, Phone, Linkedin, Github, MapPin, Send } from 'lucide-react'
+import { memo } from 'react'
 
-const Contact = () => {
+const Contact = memo(() => {
   const contactInfo = [
     {
       icon: Mail,
@@ -35,20 +36,20 @@ const Contact = () => {
   ]
 
   return (
-    <section id="contact" className="py-24 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white relative overflow-hidden">
+    <section id="contact" className="py-24 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white relative overflow-hidden">
       {/* Background effects */}
       <div className="absolute inset-0 overflow-hidden opacity-20">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse delay-700"></div>
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
             Let's Build Something Together
           </h2>
-          <p className="text-xl text-blue-200 max-w-2xl mx-auto">
-            I'm actively seeking SWE internship opportunities for Summer 2026. 
+          <p className="text-xl text-gray-200 max-w-2xl mx-auto">
+            Actively seeking SWE internship opportunities for Summer 2026. 
             Whether you want to discuss a project, opportunity, or just connect—I'd love to hear from you!
           </p>
         </div>
@@ -57,13 +58,13 @@ const Contact = () => {
           {contactInfo.map((item, index) => {
             const Icon = item.icon
             const content = (
-              <div className="group bg-white/10 backdrop-blur-md p-6 rounded-2xl hover:bg-white/20 transition-all border border-white/10 hover:border-white/20 hover:scale-105 duration-300">
+              <div className="group bg-slate-800/80 p-6 rounded-xl hover:bg-slate-700 transition-all duration-300 border border-slate-700 hover:border-purple-500/50 hover-lift cursor-pointer">
                 <div className="flex items-center gap-4">
-                  <div className="bg-gradient-to-br from-blue-500 to-purple-500 p-3 rounded-xl group-hover:scale-110 transition-transform">
+                  <div className="bg-gradient-to-r from-cyan-600 to-purple-600 p-3 rounded-lg">
                     <Icon size={24} />
                   </div>
                   <div className="text-left">
-                    <p className="text-sm text-blue-200 mb-1">{item.label}</p>
+                    <p className="text-sm text-gray-400 mb-1">{item.label}</p>
                     <p className="font-medium">{item.value}</p>
                   </div>
                 </div>
@@ -88,7 +89,7 @@ const Contact = () => {
         <div className="text-center">
           <a
             href="mailto:fs172@duke.edu"
-            className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl font-medium text-lg hover:from-blue-500 hover:to-purple-500 transition-all shadow-2xl hover:shadow-blue-500/50 hover:scale-105 transform duration-300"
+            className="inline-flex items-center gap-3 bg-gradient-to-r from-cyan-600 to-purple-600 text-white px-8 py-4 rounded-xl font-medium text-lg hover:from-cyan-500 hover:to-purple-500 transition-all shadow-xl hover:shadow-purple-500/50 transform hover:-translate-y-1 duration-300"
           >
             <Send size={20} />
             Get In Touch
@@ -96,13 +97,13 @@ const Contact = () => {
         </div>
 
         {/* Social proof */}
-        <div className="mt-16 pt-12 border-t border-white/10 text-center">
-          <p className="text-blue-200 mb-4">Open to opportunities in</p>
+        <div className="mt-16 pt-12 border-t border-slate-700 text-center">
+          <p className="text-gray-300 mb-4">Open to opportunities in</p>
           <div className="flex flex-wrap justify-center gap-3">
             {['Software Engineering', 'Full-Stack Development', 'Data Analytics', 'Machine Learning', 'Fintech'].map((area) => (
               <span
                 key={area}
-                className="bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-full text-sm"
+                className="bg-slate-800/80 border border-slate-700 px-4 py-2 rounded-lg text-sm text-gray-200"
               >
                 {area}
               </span>
@@ -112,7 +113,9 @@ const Contact = () => {
       </div>
     </section>
   )
-}
+});
+
+Contact.displayName = 'Contact';
 
 export default Contact
 
