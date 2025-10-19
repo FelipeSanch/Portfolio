@@ -17,7 +17,7 @@ const projects = [
     impact: 'Real-time GitHub integration via Chrome extension and OAuth authentication',
     tags: ['React', 'TypeScript', 'Node.js', 'PostgreSQL', 'Docker', 'Machine Learning', 'Chrome Extension', 'OAuth'],
     githubUrl: 'https://github.com/FelipeSanch/gitflow',
-    liveUrl: '',
+    liveUrl: '', // Add your deployed demo URL here (Vercel, Netlify, etc.)
     featured: true,
   },
 ]
