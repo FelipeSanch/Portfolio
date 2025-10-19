@@ -50,7 +50,7 @@ function App() {
           className="min-h-screen relative"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
         >
           <ScrollProgress />
           <Navbar isScrolled={isScrolled} />

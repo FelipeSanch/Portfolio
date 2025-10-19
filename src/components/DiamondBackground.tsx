@@ -186,15 +186,15 @@ const DiamondBackground = memo(({ onTransitionComplete, triggerRipple }: Diamond
       })
 
       // Check if transition is complete - smooth handoff (only trigger once)
-      if (triggerRipple && !transitionTriggeredRef.current && diamondsRef.current.every(d => d.rippleProgress >= 0.95)) {
+      if (triggerRipple && !transitionTriggeredRef.current && diamondsRef.current.every(d => d.rippleProgress >= 0.9)) {
         transitionTriggeredRef.current = true
-        // Allow a brief moment for final fade, then transition
+        // Immediate transition for seamless feel
         setTimeout(() => {
           if (animationRef.current) {
             cancelAnimationFrame(animationRef.current)
           }
           onTransitionComplete()
-        }, 300)
+        }, 100)
         return
       }
 
