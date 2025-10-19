@@ -59,9 +59,6 @@ const Experience = memo(() => {
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
             Experience
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            From software engineering to venture capital, building diverse expertise across tech and finance
-          </p>
         </div>
 
         <div className="relative">

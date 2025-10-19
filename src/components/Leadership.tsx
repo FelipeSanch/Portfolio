@@ -1,5 +1,6 @@
 import { Heart, Shield, GraduationCap, Award } from 'lucide-react'
 import { memo } from 'react'
+import AnimatedCounter from './AnimatedCounter'
 
 const activities = [
   {
@@ -11,7 +12,7 @@ const activities = [
       'Founded "Tapas Para Sanar" bottle cap initiative across 3 Miami schools',
     ],
     icon: Heart,
-    color: 'from-pink-500 to-rose-500',
+    color: 'from-cyan-600 to-purple-600',
   },
   {
     title: 'Founder & President',
@@ -22,7 +23,7 @@ const activities = [
       'Led team to develop AI chatbot project at CodeMania! 2023 hackathon',
     ],
     icon: Shield,
-    color: 'from-blue-500 to-cyan-500',
+    color: 'from-cyan-600 to-purple-600',
   },
   {
     title: 'Mathematics Tutor',
@@ -33,7 +34,7 @@ const activities = [
       'Help students improve SAT/ACT math scores through personalized instruction',
     ],
     icon: GraduationCap,
-    color: 'from-amber-500 to-orange-500',
+    color: 'from-cyan-600 to-purple-600',
   },
 ]
 
@@ -43,11 +44,8 @@ const Leadership = memo(() => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
-            Leadership & Impact
+            Leadership
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Creating meaningful change through community service, education, and technical innovation
-          </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
@@ -87,15 +85,21 @@ const Leadership = memo(() => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
-              <p className="text-4xl md:text-5xl font-bold mb-2 text-cyan-400">$10K+</p>
+              <p className="text-4xl md:text-5xl font-bold mb-2 text-cyan-400">
+                $<AnimatedCounter end={10} suffix="K+" className="inline-block" />
+              </p>
               <p className="text-gray-200">Raised for Pediatric Cancer Treatment</p>
             </div>
             <div className="text-center">
-              <p className="text-4xl md:text-5xl font-bold mb-2 text-cyan-400">2nd Place</p>
+              <p className="text-4xl md:text-5xl font-bold mb-2 text-cyan-400">
+                <AnimatedCounter end={2} suffix="nd Place" className="inline-block" />
+              </p>
               <p className="text-gray-200">SFISSA Hack-The-Flag Competition</p>
             </div>
             <div className="text-center">
-              <p className="text-4xl md:text-5xl font-bold mb-2 text-cyan-400">$5K+</p>
+              <p className="text-4xl md:text-5xl font-bold mb-2 text-cyan-400">
+                $<AnimatedCounter end={5} suffix="K+" className="inline-block" />
+              </p>
               <p className="text-gray-200">Math Tutoring Business Revenue</p>
             </div>
           </div>

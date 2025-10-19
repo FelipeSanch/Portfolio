@@ -29,33 +29,31 @@ const ParticlesBackground = memo(() => {
       interactivity: {
         events: {
           onClick: {
-            enable: true,
-            mode: "push",
+            enable: false,
           },
           onHover: {
             enable: true,
-            mode: "repulse",
+            mode: "grab",
           },
         },
         modes: {
-          push: {
-            quantity: 4,
-          },
-          repulse: {
-            distance: 100,
-            duration: 0.4,
+          grab: {
+            distance: 140,
+            links: {
+              opacity: 0.5,
+            },
           },
         },
       },
       particles: {
         color: {
-          value: ["#06b6d4", "#a855f7", "#ec4899"],
+          value: ["#06b6d4", "#a855f7"],
         },
         links: {
-          color: "#a855f7",
-          distance: 150,
+          color: "#06b6d4",
+          distance: 120,
           enable: true,
-          opacity: 0.3,
+          opacity: 0.2,
           width: 1,
         },
         move: {
@@ -65,23 +63,23 @@ const ParticlesBackground = memo(() => {
             default: "bounce",
           },
           random: false,
-          speed: 2,
+          speed: 1,
           straight: false,
         },
         number: {
           density: {
             enable: true,
           },
-          value: 40,
+          value: 35,
         },
         opacity: {
-          value: 0.5,
+          value: 0.6,
         },
         shape: {
           type: "circle",
         },
         size: {
-          value: { min: 1, max: 3 },
+          value: { min: 2, max: 4 },
         },
       },
       detectRetina: true,

@@ -46,11 +46,10 @@ const Contact = memo(() => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
-            Let's Build Something Together
+            Contact
           </h2>
           <p className="text-xl text-gray-200 max-w-2xl mx-auto">
-            Actively seeking SWE internship opportunities for Summer 2026. 
-            Whether you want to discuss a project, opportunity, or just connect—I'd love to hear from you!
+            Seeking SWE internship opportunities for Summer 2026. Open to discussing projects and opportunities.
           </p>
         </div>
 

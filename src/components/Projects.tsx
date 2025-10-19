@@ -1,5 +1,6 @@
 import { Github, ExternalLink, Code2, Sparkles } from 'lucide-react'
 import { memo } from 'react'
+import ParticlesBackground from './ParticlesBackground'
 
 const projects = [
   {
@@ -23,15 +24,16 @@ const projects = [
 
 const Projects = memo(() => {
   return (
-    <section id="projects" className="py-24 bg-gradient-to-b from-gray-900 to-gray-800">
+    <section id="projects" className="py-24 bg-gradient-to-b from-gray-900 to-gray-800 relative overflow-hidden">
+      {/* Background particles */}
+      <div className="absolute inset-0 opacity-30 pointer-events-none">
+        <ParticlesBackground />
+      </div>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
-            Featured Projects
+            Projects
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Building solutions that combine technical innovation with measurable business impact
-          </p>
         </div>
 
         <div className="space-y-8">
@@ -52,7 +54,7 @@ const Projects = memo(() => {
                           <p className="text-xs text-gray-500 mt-1">or demo GIF here</p>
                         </div>
                         {project.featured && (
-                          <div className="absolute top-4 right-4 bg-cyan-600 text-white px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1">
+                          <div className="absolute top-4 right-4 bg-gradient-to-r from-cyan-600 to-purple-600 text-white px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1">
                             <Sparkles size={12} />
                             Featured
                           </div>

@@ -1,5 +1,6 @@
 import { Code, Database, Cloud, Brain, Wrench, TrendingUp } from 'lucide-react'
 import { memo } from 'react'
+import ParticlesBackground from './ParticlesBackground'
 
 const skillCategories = [
   {
@@ -36,21 +37,22 @@ const skillCategories = [
     icon: TrendingUp,
     title: 'Finance & Analytics',
     skills: ['Financial Analysis', 'SEC Filings', 'VC Due Diligence', 'Data Visualization'],
-    color: 'from-orange-500 to-orange-600',
+    color: 'from-cyan-500 to-cyan-600',
   },
 ]
 
 const Skills = memo(() => {
   return (
-    <section id="skills" className="py-24 bg-gradient-to-b from-gray-800 to-gray-900">
+    <section id="skills" className="py-24 bg-gradient-to-b from-gray-800 to-gray-900 relative overflow-hidden">
+      {/* Background particles */}
+      <div className="absolute inset-0 opacity-30 pointer-events-none">
+        <ParticlesBackground />
+      </div>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
-            Technical Skills
+            Skills
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Versatile toolkit spanning software engineering, data science, and product development
-          </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -82,20 +84,20 @@ const Skills = memo(() => {
               })}
         </div>
 
-        {/* Highlight strongest skills */}
-        <div className="mt-16 bg-gradient-to-r from-cyan-600 to-cyan-700 rounded-xl p-8 md:p-12 text-white shadow-xl">
-          <h3 className="text-2xl md:text-3xl font-bold mb-4 text-center">Core Strengths</h3>
+        {/* Primary focus areas */}
+        <div className="mt-16 bg-gradient-to-r from-cyan-600 to-purple-600 rounded-xl p-8 md:p-12 text-white shadow-xl">
+          <h3 className="text-2xl md:text-3xl font-bold mb-4 text-center">Primary Focus</h3>
           <div className="grid md:grid-cols-3 gap-6 text-center">
             <div>
               <p className="text-4xl font-bold mb-2">Full-Stack</p>
               <p className="text-cyan-50">React, TypeScript, Node.js, PostgreSQL</p>
             </div>
             <div>
-              <p className="text-4xl font-bold mb-2">ML & Data</p>
+              <p className="text-4xl font-bold mb-2">Data & ML</p>
               <p className="text-cyan-50">Python, Machine Learning, Analytics</p>
             </div>
             <div>
-              <p className="text-4xl font-bold mb-2">DevOps</p>
+              <p className="text-4xl font-bold mb-2">Infrastructure</p>
               <p className="text-cyan-50">Docker, CI/CD, GitHub Actions</p>
             </div>
           </div>
