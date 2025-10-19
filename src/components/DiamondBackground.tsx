@@ -146,26 +146,27 @@ const DiamondBackground = memo(({ onTransitionComplete, triggerRipple }: Diamond
           }
 
           if (diamond.rippleDelay <= 0) {
-            diamond.rippleProgress += 0.012 // Slower, more graceful
+            diamond.rippleProgress += 0.016 // Smoother, consistent 60fps
             
-            // Smooth, controlled rotation
-            diamond.rotation += 15 * (1 - diamond.rippleProgress) * Math.sin(diamond.rippleProgress * Math.PI)
+            // Smooth, controlled rotation with easing
+            const rotationEase = Math.sin(diamond.rippleProgress * Math.PI * 0.5)
+            diamond.rotation += 12 * (1 - diamond.rippleProgress) * rotationEase
             
-            // Elegant outward motion
-            const explosionForce = Math.pow(diamond.rippleProgress, 2) * 500
-            const drift = (Math.random() - 0.5) * 30 // Subtle variation
+            // Elegant outward motion with smooth acceleration
+            const explosionForce = Math.pow(diamond.rippleProgress, 2.2) * 450
+            const drift = (Math.random() - 0.5) * 25 // Subtle variation
             
             const dx = diamond.x - clickPosRef.current.x
             const dy = diamond.y - clickPosRef.current.y
-            const angle = Math.atan2(dy, dx) + (Math.random() - 0.5) * 0.15
+            const angle = Math.atan2(dy, dx) + (Math.random() - 0.5) * 0.12
             
             diamond.x = diamond.originalX + Math.cos(angle) * (explosionForce + drift)
-            diamond.y = diamond.originalY + Math.sin(angle) * (explosionForce + drift) + Math.pow(diamond.rippleProgress, 1.5) * 80
+            diamond.y = diamond.originalY + Math.sin(angle) * (explosionForce + drift) + Math.pow(diamond.rippleProgress, 1.8) * 70
             
-            // Graceful fade and shrink
-            const fadeScale = 1 - diamond.rippleProgress * 0.4
+            // Smooth fade and shrink with easing
+            const fadeScale = 1 - Math.pow(diamond.rippleProgress, 1.5) * 0.35
             const scaledSize = diamond.size * fadeScale
-            const alpha = Math.max(0, 1 - diamond.rippleProgress * 1.3)
+            const alpha = Math.max(0, Math.pow(1 - diamond.rippleProgress, 1.2))
             
             drawDiamond(diamond.x, diamond.y, scaledSize, diamond.rotation, alpha, diamond.hue, true)
           } else {
@@ -177,11 +178,15 @@ const DiamondBackground = memo(({ onTransitionComplete, triggerRipple }: Diamond
         }
       })
 
-      // Check if transition is complete
-      if (triggerRipple && diamondsRef.current.every(d => d.rippleProgress >= 1)) {
+      // Check if transition is complete - smooth handoff
+      if (triggerRipple && diamondsRef.current.every(d => d.rippleProgress >= 0.95)) {
+        // Allow a brief moment for final fade, then transition
         setTimeout(() => {
+          if (animationRef.current) {
+            cancelAnimationFrame(animationRef.current)
+          }
           onTransitionComplete()
-        }, 500)
+        }, 300) // Reduced delay for snappier transition
         return
       }
 

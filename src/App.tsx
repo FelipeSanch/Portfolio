@@ -1,5 +1,5 @@
 import { useState, useEffect, lazy, Suspense } from 'react'
-import { AnimatePresence } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import ScrollProgress from './components/ScrollProgress'
@@ -46,7 +46,12 @@ function App() {
       </AnimatePresence>
 
       {!showLanding && (
-        <div className="min-h-screen relative">
+        <motion.div 
+          className="min-h-screen relative"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
           <ScrollProgress />
           <Navbar isScrolled={isScrolled} />
           <Hero />
@@ -59,7 +64,7 @@ function App() {
             <Contact />
             <Footer />
           </Suspense>
-        </div>
+        </motion.div>
       )}
     </>
   )
