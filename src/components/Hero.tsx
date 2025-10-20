@@ -6,6 +6,7 @@ import ParticlesBackground from './ParticlesBackground'
 const Hero = memo(() => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [text, setText] = useState('')
+  const [currentIndex, setCurrentIndex] = useState(0)
   const fullText = "Seeking SWE internships for Summer 2026"
   
   useEffect(() => {
@@ -13,6 +14,7 @@ const Hero = memo(() => {
     const timer = setInterval(() => {
       if (index <= fullText.length) {
         setText(fullText.slice(0, index))
+        setCurrentIndex(index)
         index++
       } else {
         clearInterval(timer)
@@ -136,8 +138,30 @@ const Hero = memo(() => {
                 >
                   Sophomore interested in software engineering, data analytics, and ML applications.
                 </motion.p>
-                <div className="text-base mb-8 text-gray-400 h-6">
-                  {text}<span className="animate-pulse">|</span>
+                <div className="text-base mb-8 h-6 font-mono">
+                  {text.split('').map((char, index) => (
+                    <span
+                      key={index}
+                      className={`transition-colors duration-200 ${
+                        index === text.length - 1 && currentIndex < fullText.length
+                          ? 'text-cyan-400'
+                          : 'text-gray-400'
+                      }`}
+                      style={{
+                        textShadow: index === text.length - 1 && currentIndex < fullText.length 
+                          ? '0 0 10px rgba(34, 211, 238, 0.6)' 
+                          : 'none'
+                      }}
+                    >
+                      {char}
+                    </span>
+                  ))}
+                  <span 
+                    className="animate-pulse text-cyan-400 font-bold ml-0.5"
+                    style={{ textShadow: '0 0 10px rgba(34, 211, 238, 0.8)' }}
+                  >
+                    |
+                  </span>
                 </div>
 
                 <motion.div 
