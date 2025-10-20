@@ -42,13 +42,15 @@ const skillCategories = [
 ]
 
 const Skills = memo(() => {
+  const { ref, isVisible } = useScrollAnimation()
+  
   return (
     <section id="skills" className="py-24 bg-gradient-to-b from-gray-800 to-gray-900 relative overflow-hidden">
       {/* Background particles */}
       <div className="absolute inset-0 opacity-30 pointer-events-none">
         <ParticlesBackground />
       </div>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div ref={ref} className={`max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
             Skills
