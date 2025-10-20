@@ -1,7 +1,9 @@
 import { Mail, Phone, Linkedin, Github, MapPin, Send } from 'lucide-react'
 import { memo } from 'react'
+import { useScrollAnimation } from '../hooks/useScrollAnimation'
 
 const Contact = memo(() => {
+  const { ref, isVisible } = useScrollAnimation()
   const contactInfo = [
     {
       icon: Mail,

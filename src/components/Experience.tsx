@@ -1,5 +1,6 @@
 import { Briefcase, Building2, TrendingUp } from 'lucide-react'
 import { memo } from 'react'
+import { useScrollAnimation } from '../hooks/useScrollAnimation'
 
 const experiences = [
   {
