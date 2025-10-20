@@ -1,16 +1,11 @@
 import { useScrollAnimation } from '../hooks/useScrollAnimation'
 import { memo } from 'react'
-import ParticlesBackground from './ParticlesBackground'
 
 const About = memo(() => {
   const { ref, isVisible } = useScrollAnimation()
   
   return (
-    <section id="about" className="py-24 bg-gradient-to-b from-gray-900 to-gray-800 relative overflow-hidden">
-      {/* Background particles */}
-      <div className="absolute inset-0 opacity-30 pointer-events-none">
-        <ParticlesBackground />
-      </div>
+    <section id="about" className="py-24 bg-gradient-to-b from-gray-900 to-gray-800">
       <div ref={ref} className={`max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">

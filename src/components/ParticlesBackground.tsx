@@ -47,14 +47,14 @@ const ParticlesBackground = memo(() => {
       },
       particles: {
         color: {
-          value: ["#06b6d4", "#a855f7"],
+          value: ["#3b82f6", "#60a5fa"], // Professional blue tones
         },
         links: {
-          color: "#06b6d4",
-          distance: 120,
+          color: "#3b82f6",
+          distance: 150,
           enable: true,
-          opacity: 0.2,
-          width: 1,
+          opacity: 0.4,
+          width: 1.5,
         },
         move: {
           direction: "none",
@@ -63,23 +63,23 @@ const ParticlesBackground = memo(() => {
             default: "bounce",
           },
           random: false,
-          speed: 1,
+          speed: 1.5,
           straight: false,
         },
         number: {
           density: {
             enable: true,
           },
-          value: 35,
+          value: 60, // More particles for prominence
         },
         opacity: {
-          value: 0.6,
+          value: 0.8, // More visible
         },
         shape: {
           type: "circle",
         },
         size: {
-          value: { min: 2, max: 4 },
+          value: { min: 3, max: 6 }, // Larger particles
         },
       },
       detectRetina: true,

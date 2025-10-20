@@ -1,6 +1,7 @@
 import { Github, Linkedin, Mail, FileText, ArrowDown } from 'lucide-react'
 import { useState, useEffect, memo } from 'react'
 import { motion } from 'framer-motion'
+import ParticlesBackground from './ParticlesBackground'
 
 const Hero = memo(() => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
@@ -44,6 +45,11 @@ const Hero = memo(() => {
       id="hero"
       className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white relative overflow-hidden"
     >
+      {/* Particles Background */}
+      <div className="absolute inset-0 opacity-70 pointer-events-none">
+        <ParticlesBackground />
+      </div>
+
       {/* Animated grid background */}
       <div className="absolute inset-0 opacity-20 pointer-events-none">
         <div className="absolute inset-0" style={{
