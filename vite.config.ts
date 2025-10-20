@@ -9,8 +9,6 @@ export default defineConfig({
       output: {
         manualChunks: {
           'react-vendor': ['react', 'react-dom'],
-          'three': ['three', '@react-three/fiber', '@react-three/drei'],
-          'particles': ['@tsparticles/react', '@tsparticles/slim', 'tsparticles'],
           'animations': ['framer-motion', 'react-intersection-observer'],
           'icons': ['lucide-react'],
         },
