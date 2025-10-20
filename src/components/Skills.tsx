@@ -1,6 +1,7 @@
 import { Code, Database, Cloud, Brain, Wrench, TrendingUp } from 'lucide-react'
 import { memo } from 'react'
 import ParticlesBackground from './ParticlesBackground'
+import { useScrollAnimation } from '../hooks/useScrollAnimation'
 
 const skillCategories = [
   {

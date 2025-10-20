@@ -1,5 +1,6 @@
 import { Heart, Shield, GraduationCap, Award } from 'lucide-react'
 import { memo } from 'react'
+import { useScrollAnimation } from '../hooks/useScrollAnimation'
 import AnimatedCounter from './AnimatedCounter'
 
 const activities = [
