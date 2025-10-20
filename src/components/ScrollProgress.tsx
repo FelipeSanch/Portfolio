@@ -20,14 +20,14 @@ const ScrollProgress = memo(() => {
     <>
       {/* Scroll Progress Bar */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 origin-left z-50"
+        className="fixed top-0 left-0 right-0 h-1 bg-blue-600 origin-left z-50"
         style={{ scaleX: scrollProgress / 100 }}
         initial={{ scaleX: 0 }}
       />
       
       {/* Scroll Percentage Indicator */}
       <motion.div
-        className="fixed bottom-8 right-8 w-14 h-14 rounded-full bg-gradient-to-r from-cyan-600 to-purple-600 shadow-lg flex items-center justify-center text-white font-bold text-sm z-40"
+        className="fixed bottom-8 right-8 w-14 h-14 rounded-full bg-blue-600 shadow-lg flex items-center justify-center text-white font-bold text-sm z-40"
         initial={{ scale: 0, opacity: 0 }}
         animate={{ 
           scale: scrollProgress > 5 ? 1 : 0, 
