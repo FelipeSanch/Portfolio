@@ -7,21 +7,38 @@ const Hero = memo(() => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [text, setText] = useState('')
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [isLoaded, setIsLoaded] = useState(false)
   const fullText = "Seeking SWE internships for Summer 2026"
   
   useEffect(() => {
-    let index = 0
-    const timer = setInterval(() => {
-      if (index <= fullText.length) {
-        setText(fullText.slice(0, index))
-        setCurrentIndex(index)
-        index++
-      } else {
-        clearInterval(timer)
-      }
-    }, 50)
-    return () => clearInterval(timer)
-  }, [fullText.length])
+    // Wait for initial render to complete
+    const loadTimer = setTimeout(() => {
+      setIsLoaded(true)
+    }, 100)
+    
+    return () => clearTimeout(loadTimer)
+  }, [])
+  
+  useEffect(() => {
+    // Start typing animation after content is loaded and visible
+    if (!isLoaded) return
+    
+    const startDelay = setTimeout(() => {
+      let index = 0
+      const timer = setInterval(() => {
+        if (index <= fullText.length) {
+          setText(fullText.slice(0, index))
+          setCurrentIndex(index)
+          index++
+        } else {
+          clearInterval(timer)
+        }
+      }, 50)
+      return () => clearInterval(timer)
+    }, 600) // Start after initial animations
+    
+    return () => clearTimeout(startDelay)
+  }, [fullText.length, isLoaded])
 
   useEffect(() => {
     let rafId: number
@@ -48,10 +65,16 @@ const Hero = memo(() => {
       className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white relative overflow-hidden"
       style={{ position: 'relative', isolation: 'isolate' }}
     >
-      {/* Particles Background */}
-      <div className="absolute inset-0 opacity-70 pointer-events-none" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', overflow: 'hidden' }}>
-        <ParticlesBackground />
-      </div>
+      {/* Particles Background - fade in smoothly */}
+      <motion.div 
+        className="absolute inset-0 opacity-70 pointer-events-none" 
+        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', overflow: 'hidden' }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.7 }}
+        transition={{ duration: 1, ease: 'easeOut' }}
+      >
+        {isLoaded && <ParticlesBackground />}
+      </motion.div>
 
       {/* Animated grid background */}
       <div className="absolute inset-0 opacity-20 pointer-events-none">
@@ -86,8 +109,13 @@ const Hero = memo(() => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Left side - Photo */}
-          <div className="flex justify-center md:justify-end order-1 md:order-1">
-            <div className="relative group">
+          <motion.div 
+            className="flex justify-center md:justify-end order-1 md:order-1"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
+          >
+            <div className="relative group" style={{ willChange: 'transform' }}>
               {/* Ambient glow */}
               <div className="absolute -inset-4 opacity-50">
                 <div className="absolute top-0 left-0 w-32 h-32 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl opacity-60 animate-pulse"></div>
@@ -110,7 +138,7 @@ const Hero = memo(() => {
                 />
               </div>
             </div>
-          </div>
+          </motion.div>
 
               {/* Right side - Text content */}
               <div className="order-2 md:order-2 text-center md:text-left">
@@ -118,7 +146,7 @@ const Hero = memo(() => {
                   className="text-5xl md:text-6xl lg:text-7xl font-bold mb-4 text-white"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6 }}
+                  transition={{ duration: 0.7, ease: 'easeOut' }}
                 >
                   Felipe Sanchez
                 </motion.h1>
@@ -126,7 +154,7 @@ const Hero = memo(() => {
                   className="text-xl md:text-2xl mb-3 text-blue-400 font-medium"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
+                  transition={{ duration: 0.7, delay: 0.15, ease: 'easeOut' }}
                 >
                   CS & Mathematics @ Duke University
                 </motion.p>
@@ -134,15 +162,20 @@ const Hero = memo(() => {
                   className="text-lg mb-2 text-gray-200"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
+                  transition={{ duration: 0.7, delay: 0.3, ease: 'easeOut' }}
                 >
                   Sophomore interested in software engineering, data analytics, and ML applications.
                 </motion.p>
-                <div className="text-base mb-8 h-6 font-mono">
+                <motion.div 
+                  className="text-base mb-8 h-6 font-mono"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.4, delay: 0.5 }}
+                >
                   {text.split('').map((char, index) => (
                     <span
-                      key={index}
-                      className={`transition-colors duration-200 ${
+                      key={`${index}-${char}`}
+                      className={`transition-colors duration-300 ease-out ${
                         index === text.length - 1 && currentIndex < fullText.length
                           ? 'text-cyan-400'
                           : 'text-gray-400'
@@ -150,25 +183,28 @@ const Hero = memo(() => {
                       style={{
                         textShadow: index === text.length - 1 && currentIndex < fullText.length 
                           ? '0 0 10px rgba(34, 211, 238, 0.6)' 
-                          : 'none'
+                          : 'none',
+                        willChange: index === text.length - 1 ? 'color' : 'auto'
                       }}
                     >
                       {char}
                     </span>
                   ))}
-                  <span 
-                    className="animate-pulse text-cyan-400 font-bold ml-0.5"
-                    style={{ textShadow: '0 0 10px rgba(34, 211, 238, 0.8)' }}
-                  >
-                    |
-                  </span>
-                </div>
+                  {currentIndex <= fullText.length && (
+                    <span 
+                      className="animate-pulse text-cyan-400 font-bold ml-0.5"
+                      style={{ textShadow: '0 0 10px rgba(34, 211, 238, 0.8)' }}
+                    >
+                      |
+                    </span>
+                  )}
+                </motion.div>
 
                 <motion.div 
                   className="flex flex-wrap gap-3 justify-center md:justify-start"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
+                  transition={{ duration: 0.7, delay: 0.45, ease: 'easeOut' }}
                 >
               <a
                 href="/resume.pdf"
@@ -209,12 +245,15 @@ const Hero = memo(() => {
       </div>
 
       {/* Scroll indicator */}
-      <a
+      <motion.a
         href="#about"
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce opacity-50 hover:opacity-100 transition-opacity"
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 0.5, y: 0 }}
+        transition={{ duration: 0.6, delay: 1, ease: 'easeOut' }}
       >
         <ArrowDown size={32} />
-      </a>
+      </motion.a>
     </section>
   )
 });
