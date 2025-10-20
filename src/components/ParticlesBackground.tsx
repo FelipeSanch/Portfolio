@@ -37,9 +37,9 @@ const ParticlesBackground = memo(() => {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 1.5,
-        vy: (Math.random() - 0.5) * 1.5,
-        radius: Math.random() * 3 + 3,
+        vx: (Math.random() - 0.5) * 1.2,
+        vy: (Math.random() - 0.5) * 1.2,
+        radius: Math.random() * 1.5 + 1.5, // Smaller: 1.5-3px
       })
     }
 
@@ -73,11 +73,23 @@ const ParticlesBackground = memo(() => {
         particle.x = Math.max(0, Math.min(canvas.width, particle.x))
         particle.y = Math.max(0, Math.min(canvas.height, particle.y))
 
-        // Draw particle
+        // Draw particle with glow effect
+        ctx.shadowBlur = 8
+        ctx.shadowColor = 'rgba(96, 165, 250, 0.6)'
         ctx.beginPath()
         ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2)
-        ctx.fillStyle = 'rgba(59, 130, 246, 0.8)' // blue-600
+        
+        // Create gradient for particle
+        const gradient = ctx.createRadialGradient(
+          particle.x, particle.y, 0,
+          particle.x, particle.y, particle.radius
+        )
+        gradient.addColorStop(0, 'rgba(147, 197, 253, 0.9)') // blue-300
+        gradient.addColorStop(1, 'rgba(59, 130, 246, 0.6)') // blue-600
+        
+        ctx.fillStyle = gradient
         ctx.fill()
+        ctx.shadowBlur = 0
       })
 
       // Draw connections
@@ -91,9 +103,9 @@ const ParticlesBackground = memo(() => {
             ctx.beginPath()
             ctx.moveTo(p1.x, p1.y)
             ctx.lineTo(p2.x, p2.y)
-            const opacity = (1 - distance / maxDistance) * 0.4
-            ctx.strokeStyle = `rgba(59, 130, 246, ${opacity})`
-            ctx.lineWidth = 1.5
+            const opacity = (1 - distance / maxDistance) * 0.3
+            ctx.strokeStyle = `rgba(96, 165, 250, ${opacity})` // blue-400
+            ctx.lineWidth = 1
             ctx.stroke()
           }
         })
@@ -107,9 +119,9 @@ const ParticlesBackground = memo(() => {
           ctx.beginPath()
           ctx.moveTo(p1.x, p1.y)
           ctx.lineTo(mouseX, mouseY)
-          const opacity = (1 - distanceToMouse / 140) * 0.5
-          ctx.strokeStyle = `rgba(59, 130, 246, ${opacity})`
-          ctx.lineWidth = 1.5
+          const opacity = (1 - distanceToMouse / 140) * 0.4
+          ctx.strokeStyle = `rgba(147, 197, 253, ${opacity})` // blue-300 for mouse interaction
+          ctx.lineWidth = 1.2
           ctx.stroke()
         }
       })
