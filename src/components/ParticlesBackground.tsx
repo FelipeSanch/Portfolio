@@ -94,6 +94,7 @@ const ParticlesBackground = memo(() => {
         particlesLoaded={particlesLoaded}
         options={options}
         className="absolute inset-0 pointer-events-auto"
+        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
       />
     );
   }
