@@ -26,7 +26,7 @@ const Footer = memo(() => {
                 <a
                   key={item}
                   href={`#${item.toLowerCase()}`}
-                  className="text-sm hover:bg-gradient-to-r hover:from-cyan-400 hover:to-purple-400 hover:bg-clip-text hover:text-transparent transition-all"
+                  className="text-sm hover:text-blue-400 transition-all"
                 >
                   {item}
                 </a>
@@ -42,7 +42,7 @@ const Footer = memo(() => {
                 href="https://github.com/FelipeSanch"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-gradient-to-r hover:from-cyan-600 hover:to-purple-600 transition-all"
+                className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-all"
               >
                 <Github size={20} />
               </a>
@@ -50,13 +50,13 @@ const Footer = memo(() => {
                 href="https://linkedin.com/in/felipesanchez-noguera"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-gradient-to-r hover:from-cyan-600 hover:to-purple-600 transition-all"
+                className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-all"
               >
                 <Linkedin size={20} />
               </a>
               <a
                 href="mailto:fs172@duke.edu"
-                className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-gradient-to-r hover:from-cyan-600 hover:to-purple-600 transition-all"
+                className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-all"
               >
                 <Mail size={20} />
               </a>

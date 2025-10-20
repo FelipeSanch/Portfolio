@@ -86,10 +86,10 @@ const Hero = memo(() => {
               </div>
               
               {/* Glow ring on hover */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-3xl opacity-0 group-hover:opacity-50 blur-xl transition-opacity duration-500"></div>
+              <div className="absolute -inset-1 bg-blue-500 rounded-3xl opacity-0 group-hover:opacity-30 blur-xl transition-opacity duration-500"></div>
               
               {/* Photo container */}
-              <div className="relative w-72 h-72 md:w-96 md:h-96 bg-white rounded-3xl shadow-2xl overflow-hidden transition-all duration-500 group-hover:shadow-purple-500/50" 
+              <div className="relative w-72 h-72 md:w-96 md:h-96 bg-white rounded-3xl shadow-2xl overflow-hidden transition-all duration-500 group-hover:shadow-blue-500/30" 
                    style={{ 
                      boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
                    }}>
@@ -114,7 +114,7 @@ const Hero = memo(() => {
                   Felipe Sanchez
                 </motion.h1>
                 <motion.p 
-                  className="text-xl md:text-2xl mb-3 bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent font-medium"
+                  className="text-xl md:text-2xl mb-3 text-blue-400 font-medium"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.1 }}
@@ -129,7 +129,7 @@ const Hero = memo(() => {
                 >
                   Sophomore interested in software engineering, data analytics, and ML applications.
                 </motion.p>
-                <div className="text-base mb-8 text-cyan-300 h-6">
+                <div className="text-base mb-8 text-gray-400 h-6">
                   {text}<span className="animate-pulse">|</span>
                 </div>
 
@@ -142,7 +142,7 @@ const Hero = memo(() => {
               <a
                 href="/resume.pdf"
                 download
-                className="group inline-flex items-center gap-2 bg-gradient-to-r from-cyan-600 to-purple-600 text-white px-6 py-3 rounded-lg hover:from-cyan-500 hover:to-purple-500 transition-all shadow-lg hover:shadow-purple-500/50 font-medium"
+                className="group inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-all shadow-lg hover:shadow-blue-500/50 font-medium"
               >
                 <FileText size={20} />
                 <span>Resume</span>

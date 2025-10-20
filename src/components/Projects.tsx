@@ -57,7 +57,7 @@ const Projects = memo(() => {
                           <p className="text-xs text-gray-500 mt-1">or demo GIF here</p>
                         </div>
                         {project.featured && (
-                          <div className="absolute top-4 right-4 bg-gradient-to-r from-cyan-600 to-purple-600 text-white px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1">
+                          <div className="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1">
                             <Sparkles size={12} />
                             Featured
                           </div>

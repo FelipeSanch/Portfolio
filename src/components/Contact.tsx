@@ -61,7 +61,7 @@ const Contact = memo(() => {
             const content = (
               <div className="group bg-slate-800/80 p-6 rounded-xl hover:bg-slate-700 transition-all duration-300 border border-slate-700 hover:border-purple-500/50 hover-lift cursor-pointer">
                 <div className="flex items-center gap-4">
-                  <div className="bg-gradient-to-r from-cyan-600 to-purple-600 p-3 rounded-lg">
+                  <div className="bg-blue-600 p-3 rounded-lg">
                     <Icon size={24} />
                   </div>
                   <div className="text-left">
@@ -90,7 +90,7 @@ const Contact = memo(() => {
         <div className="text-center">
           <a
             href="mailto:fs172@duke.edu"
-            className="inline-flex items-center gap-3 bg-gradient-to-r from-cyan-600 to-purple-600 text-white px-8 py-4 rounded-xl font-medium text-lg hover:from-cyan-500 hover:to-purple-500 transition-all shadow-xl hover:shadow-purple-500/50 transform hover:-translate-y-1 duration-300"
+            className="inline-flex items-center gap-3 bg-blue-600 text-white px-8 py-4 rounded-xl font-medium text-lg hover:bg-blue-700 transition-all shadow-xl hover:shadow-blue-500/50 transform hover:-translate-y-1 duration-300"
           >
             <Send size={20} />
             Get In Touch

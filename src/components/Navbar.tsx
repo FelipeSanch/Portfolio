@@ -31,7 +31,7 @@ const Navbar = memo(({ isScrolled }: NavbarProps) => {
                 href="#hero"
                 className={`text-2xl font-bold transition-colors ${
                   isScrolled 
-                    ? 'bg-gradient-to-r from-cyan-600 to-purple-600 bg-clip-text text-transparent' 
+                    ? 'text-blue-600' 
                     : 'text-white'
                 }`}
               >
@@ -49,7 +49,7 @@ const Navbar = memo(({ isScrolled }: NavbarProps) => {
                     }`}
                   >
                     {link.label}
-                    <span className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-500 to-purple-500 transition-all group-hover:w-full`}></span>
+                    <span className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 transition-all group-hover:w-full`}></span>
                   </a>
             ))}
                 <a
@@ -57,7 +57,7 @@ const Navbar = memo(({ isScrolled }: NavbarProps) => {
                   download
                   className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all ${
                     isScrolled
-                      ? 'bg-gradient-to-r from-cyan-600 to-purple-600 text-white hover:from-cyan-500 hover:to-purple-500 shadow-md'
+                      ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-md'
                       : 'bg-slate-800/80 text-white border border-slate-700 hover:bg-slate-700'
                   }`}
                 >
@@ -93,7 +93,7 @@ const Navbar = memo(({ isScrolled }: NavbarProps) => {
                 <a
                   href="/resume.pdf"
                   download
-                  className="flex items-center gap-2 bg-gradient-to-r from-cyan-600 to-purple-600 text-white px-4 py-3 rounded-lg hover:from-cyan-500 hover:to-purple-500 transition-all font-medium"
+                  className="flex items-center gap-2 bg-blue-600 text-white px-4 py-3 rounded-lg hover:bg-blue-700 transition-all font-medium"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <FileText size={16} />

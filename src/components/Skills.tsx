@@ -88,7 +88,7 @@ const Skills = memo(() => {
         </div>
 
         {/* Primary focus areas */}
-        <div className="mt-16 bg-gradient-to-r from-cyan-600 to-purple-600 rounded-xl p-8 md:p-12 text-white shadow-xl">
+        <div className="mt-16 bg-blue-600 rounded-xl p-8 md:p-12 text-white shadow-xl">
           <h3 className="text-2xl md:text-3xl font-bold mb-4 text-center">Primary Focus</h3>
           <div className="grid md:grid-cols-3 gap-6 text-center">
             <div>
