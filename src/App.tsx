@@ -1,53 +1,39 @@
-import { useState, useEffect, lazy, Suspense } from 'react'
-import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import ScrollProgress from './components/ScrollProgress'
-
-// Lazy load sections below the fold for better initial load performance
-const About = lazy(() => import('./components/About'))
-const Experience = lazy(() => import('./components/Experience'))
-const Projects = lazy(() => import('./components/Projects'))
-const Skills = lazy(() => import('./components/Skills'))
-const Leadership = lazy(() => import('./components/Leadership'))
-const Contact = lazy(() => import('./components/Contact'))
-const Footer = lazy(() => import('./components/Footer'))
+import { useState } from 'react'
+import Landing from './components/Landing'
+import Projects from './components/Projects'
+import Experience from './components/Experience'
+import Tools from './components/Tools'
 
 function App() {
-  const [isScrolled, setIsScrolled] = useState(false)
+  const [activeTab, setActiveTab] = useState('projects')
+  const [isDark, setIsDark] = useState(true)
 
-  useEffect(() => {
-    let rafId: number
-    const handleScroll = () => {
-      if (rafId) {
-        cancelAnimationFrame(rafId)
-      }
-      rafId = requestAnimationFrame(() => {
-        setIsScrolled(window.scrollY > 50)
-      })
-    }
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-      if (rafId) {
-        cancelAnimationFrame(rafId)
-      }
-    }
-  }, [])
+  // Theme colors - only bg and text change
+  const theme = {
+    bg: isDark ? '#111111' : '#ffffff',
+    text: isDark ? '#ffffff' : '#000000',
+    textMuted: isDark ? '#a3a3a3' : '#666666',
+    textDark: isDark ? '#737373' : '#999999',
+    border: isDark ? '#2a2a2a' : '#e5e5e5',
+  }
 
   return (
-    <div className="min-h-screen relative">
-      <ScrollProgress />
-      <Navbar isScrolled={isScrolled} />
-      <Hero />
-      <Suspense fallback={<div className="min-h-screen bg-gray-900" />}>
-        <About />
-        <Experience />
-        <Projects />
-        <Skills />
-        <Leadership />
-        <Contact />
-        <Footer />
-      </Suspense>
+    <div style={{ minHeight: '100vh', backgroundColor: theme.bg, transition: 'background-color 0.3s' }}>
+      <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+        <Landing 
+          activeTab={activeTab} 
+          setActiveTab={setActiveTab}
+          theme={theme}
+          isDark={isDark}
+          toggleTheme={() => setIsDark(!isDark)}
+        />
+        
+        <div style={{ padding: '64px 24px' }}>
+          {activeTab === 'projects' && <Projects theme={theme} />}
+          {activeTab === 'experience' && <Experience theme={theme} />}
+          {activeTab === 'tools' && <Tools theme={theme} />}
+        </div>
+      </div>
     </div>
   )
 }
