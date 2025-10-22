@@ -61,27 +61,33 @@ const Tools = memo(({ theme }: ToolsProps) => {
               flexDirection: 'column',
               alignItems: 'center',
               gap: '8px',
-              transition: 'transform 0.2s ease',
               cursor: 'default'
             }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-4px)'
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)'
-            }}
           >
-            <img 
-              src={tool.logo} 
-              alt={tool.name}
+            <div
               style={{
-                width: '40px',
-                height: '40px',
-                objectFit: 'contain',
-                filter: (tool.name === 'Next.js' && isDark) ? 'invert(1)' : 'none',
-                transition: 'filter 0.3s'
+                transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                cursor: 'pointer'
               }}
-            />
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-6px) scale(1.1)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0) scale(1)'
+              }}
+            >
+              <img 
+                src={tool.logo} 
+                alt={tool.name}
+                style={{
+                  width: '40px',
+                  height: '40px',
+                  objectFit: 'contain',
+                  filter: (tool.name === 'Next.js' && isDark) ? 'invert(1)' : 'none',
+                  transition: 'filter 0.3s'
+                }}
+              />
+            </div>
             <span style={{
               fontSize: '13px',
               color: theme.textMuted,
@@ -122,27 +128,33 @@ const Tools = memo(({ theme }: ToolsProps) => {
               flexDirection: 'column',
               alignItems: 'center',
               gap: '8px',
-              transition: 'transform 0.2s ease',
               cursor: 'default'
             }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-4px)'
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)'
-            }}
           >
-            <img 
-              src={tool.logo} 
-              alt={tool.name}
+            <div
               style={{
-                width: '40px',
-                height: '40px',
-                objectFit: 'contain',
-                filter: ((tool.name === 'Express' || tool.name === 'Linux') && isDark) ? 'invert(1)' : 'none',
-                transition: 'filter 0.3s'
+                transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                cursor: 'pointer'
               }}
-            />
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-6px) scale(1.1)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0) scale(1)'
+              }}
+            >
+              <img 
+                src={tool.logo} 
+                alt={tool.name}
+                style={{
+                  width: '40px',
+                  height: '40px',
+                  objectFit: 'contain',
+                  filter: ((tool.name === 'Express' || tool.name === 'Linux') && isDark) ? 'invert(1)' : 'none',
+                  transition: 'filter 0.3s'
+                }}
+              />
+            </div>
             <span style={{
               fontSize: '13px',
               color: theme.textMuted,
