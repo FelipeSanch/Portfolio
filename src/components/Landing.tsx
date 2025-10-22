@@ -23,8 +23,8 @@ const Landing = memo(({ activeTab, setActiveTab, theme, isDark, toggleTheme }: L
     { id: 'game', label: 'Play' },
   ]
 
-  const fullName = "Felipe Sanchez"
-  const [displayedName, setDisplayedName] = useState("")
+  const typewriterText = "Hey, I'm Felipe Sanchez"
+  const [displayedText, setDisplayedText] = useState("")
   const [showCaret, setShowCaret] = useState(true)
 
   // Typewriter effect
@@ -34,17 +34,17 @@ const Landing = memo(({ activeTab, setActiveTab, theme, isDark, toggleTheme }: L
 
     const startTyping = () => {
       typingInterval = setInterval(() => {
-        if (index <= fullName.length) {
-          setDisplayedName(fullName.slice(0, index))
+        if (index <= typewriterText.length) {
+          setDisplayedText(typewriterText.slice(0, index))
           index++
         } else {
           clearInterval(typingInterval)
         }
-      }, 80)
+      }, 60) // Faster typing for smoother feel
     }
 
     // Start typing after a brief delay
-    const startDelay = setTimeout(startTyping, 200)
+    const startDelay = setTimeout(startTyping, 300)
 
     // Cleanup
     return () => {
@@ -57,13 +57,12 @@ const Landing = memo(({ activeTab, setActiveTab, theme, isDark, toggleTheme }: L
   useEffect(() => {
     const caretTimer = setInterval(() => {
       setShowCaret(prev => !prev)
-    }, 530)
+    }, 500) // Slightly faster blink for more natural feel
     return () => clearInterval(caretTimer)
   }, [])
 
   return (
     <div style={{ 
-      borderBottom: `1px solid ${theme.border}`,
       padding: '48px 24px 0 24px',
       transition: 'border-color 0.3s'
     }}>
@@ -71,37 +70,38 @@ const Landing = memo(({ activeTab, setActiveTab, theme, isDark, toggleTheme }: L
         <div style={{ marginBottom: '48px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
             <div style={{ flex: 1 }}>
-              <h1 style={{ 
-                fontSize: '28px',
-                fontWeight: '700',
-                color: theme.text,
-                marginBottom: '10px',
-                letterSpacing: '-0.02em',
-                transition: 'color 0.3s',
-                fontFamily: 'JetBrains Mono, monospace',
-                minHeight: '38px',
-                display: 'flex',
-                alignItems: 'center'
-              }}>
-                <span>{displayedName}</span>
-                <span style={{ 
-                  color: '#06b6d4',
-                  opacity: showCaret && displayedName.length > 0 ? 1 : 0,
-                  transition: 'opacity 0.15s ease',
-                  marginLeft: '2px'
-                }}>
-                  |
-                </span>
-              </h1>
-              <p style={{ 
-                fontSize: '14px',
-                color: theme.textMuted,
-                lineHeight: '1.6',
-                marginBottom: '20px',
-                transition: 'color 0.3s'
-              }}>
-                CS & Math @ Duke University. Building scalable full-stack applications, ML-powered solutions, and data-driven systems.
-              </p>
+                     <h1 style={{ 
+                       fontSize: '24px',
+                       fontWeight: '700',
+                       color: theme.text,
+                       marginBottom: '10px',
+                       letterSpacing: '-0.02em',
+                       transition: 'color 0.3s',
+                       fontFamily: 'JetBrains Mono, monospace',
+                       minHeight: '32px',
+                       display: 'flex',
+                       alignItems: 'center'
+                     }}>
+                       <span style={{ whiteSpace: 'pre' }}>{displayedText}</span>
+                       <span style={{ 
+                         color: '#06b6d4',
+                         opacity: showCaret && displayedText.length > 0 ? 1 : 0,
+                         transition: 'opacity 0.1s ease',
+                         marginLeft: '1px',
+                         fontWeight: '400'
+                       }}>
+                         |
+                       </span>
+                     </h1>
+                     <p style={{ 
+                       fontSize: '14px',
+                       color: theme.textMuted,
+                       lineHeight: '1.6',
+                       marginBottom: '20px',
+                       transition: 'color 0.3s'
+                     }}>
+                       CS & Math major at Duke University, concentrating in Machine Learning. I build full-stack applications and work on data-driven projects.
+                     </p>
             </div>
 
             {/* Theme Toggle */}
@@ -160,7 +160,12 @@ const Landing = memo(({ activeTab, setActiveTab, theme, isDark, toggleTheme }: L
         </div>
 
         {/* Tab Navigation */}
-        <nav style={{ display: 'flex', gap: '0', borderBottom: `1px solid ${theme.border}`, transition: 'border-color 0.3s' }}>
+        <nav style={{ 
+          display: 'flex', 
+          gap: '0', 
+          borderBottom: `1px solid ${theme.border}`, 
+          transition: 'border-color 0.3s'
+        }}>
           {tabs.map((tab) => (
             <button
               key={tab.id}
