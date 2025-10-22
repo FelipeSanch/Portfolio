@@ -52,7 +52,7 @@ const Game = memo(({ theme }: GameProps) => {
         {/* Game iframe */}
         <iframe
           ref={iframeRef}
-          src="/dino/index.html"
+          src={`/dino/index.html?theme=${isDark ? 'dark' : 'light'}`}
           style={{
             width: '100%',
             height: '400px',

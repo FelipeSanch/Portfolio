@@ -4,6 +4,11 @@
 // extract from chromium source code by @liuwayong
 (function () {
     'use strict';
+    
+    // Get theme from URL parameter
+    var urlParams = new URLSearchParams(window.location.search);
+    var theme = urlParams.get('theme') || 'dark';
+    var isDarkTheme = theme === 'dark';
     /**
      * T-Rex runner.
      * @param {string} outerContainerId Outer containing element id.
@@ -1736,7 +1741,7 @@
             sourceX += this.spritePos.x;
             sourceY += this.spritePos.y;
 
-            // Save canvas state and add cyan glow
+            // Save canvas state and add cyan glow (both modes)
             this.canvasCtx.save();
             this.canvasCtx.shadowColor = 'rgba(6, 182, 212, 0.9)';
             this.canvasCtx.shadowBlur = 15;
@@ -2032,33 +2037,45 @@
                 this.canvasCtx.translate(this.x, this.y);
             }
 
-            // Draw the glow layer first (multiple passes for intensity)
+            // Draw with cyan glow
             this.canvasCtx.shadowColor = 'rgba(6, 182, 212, 1)';
             this.canvasCtx.shadowBlur = 15;
-            this.canvasCtx.drawImage(this.image, sourceX, sourceY,
-                sourceWidth, sourceHeight,
-                targetX, targetY,
-                targetWidth, targetHeight
-            );
+            
+            if (isDarkTheme) {
+                // Dark mode: bright white score with cyan glow
+                this.canvasCtx.drawImage(this.image, sourceX, sourceY,
+                    sourceWidth, sourceHeight,
+                    targetX, targetY,
+                    targetWidth, targetHeight
+                );
 
-            // Draw again to make it brighter (layered glow)
-            this.canvasCtx.shadowBlur = 8;
-            this.canvasCtx.globalCompositeOperation = 'lighter';
-            this.canvasCtx.drawImage(this.image, sourceX, sourceY,
-                sourceWidth, sourceHeight,
-                targetX, targetY,
-                targetWidth, targetHeight
-            );
+                // Draw again to make it brighter (layered glow)
+                this.canvasCtx.shadowBlur = 8;
+                this.canvasCtx.globalCompositeOperation = 'lighter';
+                this.canvasCtx.drawImage(this.image, sourceX, sourceY,
+                    sourceWidth, sourceHeight,
+                    targetX, targetY,
+                    targetWidth, targetHeight
+                );
 
-            // Draw the core bright layer
-            this.canvasCtx.shadowBlur = 0;
-            this.canvasCtx.globalCompositeOperation = 'lighter';
-            this.canvasCtx.filter = 'brightness(2) contrast(1.5)';
-            this.canvasCtx.drawImage(this.image, sourceX, sourceY,
-                sourceWidth, sourceHeight,
-                targetX, targetY,
-                targetWidth, targetHeight
-            );
+                // Draw the core bright layer
+                this.canvasCtx.shadowBlur = 0;
+                this.canvasCtx.globalCompositeOperation = 'lighter';
+                this.canvasCtx.filter = 'brightness(2) contrast(1.5)';
+                this.canvasCtx.drawImage(this.image, sourceX, sourceY,
+                    sourceWidth, sourceHeight,
+                    targetX, targetY,
+                    targetWidth, targetHeight
+                );
+            } else {
+                // Light mode: darker score with cyan glow
+                this.canvasCtx.filter = 'brightness(0.3) contrast(1.5)';
+                this.canvasCtx.drawImage(this.image, sourceX, sourceY,
+                    sourceWidth, sourceHeight,
+                    targetX, targetY,
+                    targetWidth, targetHeight
+                );
+            }
 
             this.canvasCtx.restore();
         },
