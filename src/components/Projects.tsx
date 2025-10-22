@@ -52,14 +52,16 @@ const Projects = memo(({ theme }: ProjectsProps) => {
               color: theme.text,
               marginBottom: '4px',
               letterSpacing: '-0.01em',
-              transition: 'color 0.3s'
+              transition: 'color 0.3s',
+              fontFamily: 'JetBrains Mono, monospace'
             }}>
               {project.title}
             </h3>
             <p style={{
               fontSize: '13px',
               color: theme.textDark,
-              transition: 'color 0.3s'
+              transition: 'color 0.3s',
+              fontFamily: 'JetBrains Mono, monospace'
             }}>
               {project.period}
             </p>
@@ -71,7 +73,8 @@ const Projects = memo(({ theme }: ProjectsProps) => {
             color: theme.textMuted,
             lineHeight: '1.6',
             marginBottom: '14px',
-            transition: 'color 0.3s'
+            transition: 'color 0.3s',
+            fontFamily: 'JetBrains Mono, monospace'
           }}>
             {project.description}
           </p>
@@ -84,7 +87,8 @@ const Projects = memo(({ theme }: ProjectsProps) => {
                 color: theme.textMuted,
                 marginBottom: '8px',
                 lineHeight: '1.5',
-                transition: 'color 0.3s'
+                transition: 'color 0.3s',
+                fontFamily: 'JetBrains Mono, monospace'
               }}>
                 {item}
               </li>
@@ -96,7 +100,8 @@ const Projects = memo(({ theme }: ProjectsProps) => {
             fontSize: '13px',
             color: theme.textDark,
             marginBottom: '16px',
-            transition: 'color 0.3s'
+            transition: 'color 0.3s',
+            fontFamily: 'JetBrains Mono, monospace'
           }}>
             {project.tags.join(' / ')}
           </p>
@@ -114,7 +119,8 @@ const Projects = memo(({ theme }: ProjectsProps) => {
                 fontSize: '14px',
                 color: theme.textMuted,
                 textDecoration: 'none',
-                transition: 'color 0.2s'
+                transition: 'color 0.2s',
+                fontFamily: 'JetBrains Mono, monospace'
               }}
               onMouseEnter={(e) => e.currentTarget.style.color = '#06b6d4'}
               onMouseLeave={(e) => e.currentTarget.style.color = theme.textMuted}
@@ -134,7 +140,8 @@ const Projects = memo(({ theme }: ProjectsProps) => {
                   fontSize: '14px',
                   color: theme.textMuted,
                   textDecoration: 'none',
-                  transition: 'color 0.2s'
+                  transition: 'color 0.2s',
+                  fontFamily: 'JetBrains Mono, monospace'
                 }}
                 onMouseEnter={(e) => e.currentTarget.style.color = '#06b6d4'}
                 onMouseLeave={(e) => e.currentTarget.style.color = theme.textMuted}

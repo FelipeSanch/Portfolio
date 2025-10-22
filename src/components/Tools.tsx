@@ -31,6 +31,7 @@ const backendTools = [
 
 const Tools = memo(({ theme }: ToolsProps) => {
   const isDark = theme.bg === '#111111'
+
   return (
     <div>
       {/* FRONTEND SECTION */}
@@ -41,7 +42,8 @@ const Tools = memo(({ theme }: ToolsProps) => {
         marginBottom: '20px',
         textTransform: 'uppercase',
         letterSpacing: '0.05em',
-        transition: 'color 0.3s'
+        transition: 'color 0.3s',
+        fontFamily: 'JetBrains Mono, monospace'
       }}>
         Frontend
       </h3>
@@ -85,7 +87,8 @@ const Tools = memo(({ theme }: ToolsProps) => {
               color: theme.textMuted,
               fontWeight: '500',
               textAlign: 'center',
-              transition: 'color 0.3s'
+              transition: 'color 0.3s',
+              fontFamily: 'JetBrains Mono, monospace'
             }}>
               {tool.name}
             </span>
@@ -101,7 +104,8 @@ const Tools = memo(({ theme }: ToolsProps) => {
         marginBottom: '20px',
         textTransform: 'uppercase',
         letterSpacing: '0.05em',
-        transition: 'color 0.3s'
+        transition: 'color 0.3s',
+        fontFamily: 'JetBrains Mono, monospace'
       }}>
         Backend and Infrastructure
       </h3>
@@ -144,7 +148,8 @@ const Tools = memo(({ theme }: ToolsProps) => {
               color: theme.textMuted,
               fontWeight: '500',
               textAlign: 'center',
-              transition: 'color 0.3s'
+              transition: 'color 0.3s',
+              fontFamily: 'JetBrains Mono, monospace'
             }}>
               {tool.name}
             </span>

@@ -3,6 +3,7 @@ import Landing from './components/Landing'
 import Projects from './components/Projects'
 import Experience from './components/Experience'
 import Tools from './components/Tools'
+import Game from './components/Game'
 
 function App() {
   const [activeTab, setActiveTab] = useState('projects')
@@ -32,6 +33,7 @@ function App() {
           {activeTab === 'projects' && <Projects theme={theme} />}
           {activeTab === 'experience' && <Experience theme={theme} />}
           {activeTab === 'tools' && <Tools theme={theme} />}
+          {activeTab === 'game' && <Game theme={theme} />}
         </div>
       </div>
     </div>

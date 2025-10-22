@@ -71,12 +71,13 @@ const Experience = memo(({ theme }: ExperienceProps) => {
           {/* Header */}
           <div style={{ marginBottom: '16px' }}>
             <h3 style={{
-              fontSize: '15px',
+              fontSize: '16px',
               fontWeight: '600',
               color: theme.text,
               marginBottom: '4px',
               letterSpacing: '-0.01em',
-              transition: 'color 0.3s'
+              transition: 'color 0.3s',
+              fontFamily: 'JetBrains Mono, monospace'
             }}>
               {exp.title}
             </h3>
@@ -84,14 +85,16 @@ const Experience = memo(({ theme }: ExperienceProps) => {
               fontSize: '13px',
               color: theme.textMuted,
               marginBottom: '4px',
-              transition: 'color 0.3s'
+              transition: 'color 0.3s',
+              fontFamily: 'JetBrains Mono, monospace'
             }}>
               {exp.company}
             </p>
             <p style={{
               fontSize: '13px',
               color: theme.textDark,
-              transition: 'color 0.3s'
+              transition: 'color 0.3s',
+              fontFamily: 'JetBrains Mono, monospace'
             }}>
               {exp.period} • {exp.location}
             </p>
@@ -105,7 +108,8 @@ const Experience = memo(({ theme }: ExperienceProps) => {
                 color: theme.textMuted,
                 marginBottom: '8px',
                 lineHeight: '1.5',
-                transition: 'color 0.3s'
+                transition: 'color 0.3s',
+                fontFamily: 'JetBrains Mono, monospace'
               }}>
                 {item}
               </li>

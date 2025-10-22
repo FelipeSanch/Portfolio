@@ -1,5 +1,5 @@
 import { Github, Linkedin, Mail, FileText, Sun, Moon } from 'lucide-react'
-import { memo } from 'react'
+import { memo, useState, useEffect } from 'react'
 
 interface LandingProps {
   activeTab: string
@@ -20,7 +20,46 @@ const Landing = memo(({ activeTab, setActiveTab, theme, isDark, toggleTheme }: L
     { id: 'projects', label: 'Projects' },
     { id: 'experience', label: 'Experience' },
     { id: 'tools', label: 'Tools' },
+    { id: 'game', label: 'Play' },
   ]
+
+  const fullName = "Felipe Sanchez"
+  const [displayedName, setDisplayedName] = useState("")
+  const [showCaret, setShowCaret] = useState(true)
+
+  // Typewriter effect
+  useEffect(() => {
+    let index = 0
+    let typingInterval: number | undefined
+
+    const startTyping = () => {
+      typingInterval = setInterval(() => {
+        if (index <= fullName.length) {
+          setDisplayedName(fullName.slice(0, index))
+          index++
+        } else {
+          clearInterval(typingInterval)
+        }
+      }, 80)
+    }
+
+    // Start typing after a brief delay
+    const startDelay = setTimeout(startTyping, 200)
+
+    // Cleanup
+    return () => {
+      clearTimeout(startDelay)
+      if (typingInterval) clearInterval(typingInterval)
+    }
+  }, [])
+
+  // Caret blinking effect
+  useEffect(() => {
+    const caretTimer = setInterval(() => {
+      setShowCaret(prev => !prev)
+    }, 530)
+    return () => clearInterval(caretTimer)
+  }, [])
 
   return (
     <div style={{ 
@@ -38,9 +77,21 @@ const Landing = memo(({ activeTab, setActiveTab, theme, isDark, toggleTheme }: L
                 color: theme.text,
                 marginBottom: '10px',
                 letterSpacing: '-0.02em',
-                transition: 'color 0.3s'
+                transition: 'color 0.3s',
+                fontFamily: 'JetBrains Mono, monospace',
+                minHeight: '38px',
+                display: 'flex',
+                alignItems: 'center'
               }}>
-                Felipe Sanchez
+                <span>{displayedName}</span>
+                <span style={{ 
+                  color: '#06b6d4',
+                  opacity: showCaret && displayedName.length > 0 ? 1 : 0,
+                  transition: 'opacity 0.15s ease',
+                  marginLeft: '2px'
+                }}>
+                  |
+                </span>
               </h1>
               <p style={{ 
                 fontSize: '14px',

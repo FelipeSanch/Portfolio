@@ -9,7 +9,6 @@ export default defineConfig({
       output: {
         manualChunks: {
           'react-vendor': ['react', 'react-dom'],
-          'animations': ['framer-motion', 'react-intersection-observer'],
           'icons': ['lucide-react'],
         },
       },
