@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, FileText, Sun, Moon } from 'lucide-react'
+import { Github, Linkedin, Mail, Sun, Moon } from 'lucide-react'
 import { memo, useState, useEffect } from 'react'
 
 interface LandingProps {
@@ -155,15 +155,6 @@ const Landing = memo(({ activeTab, setActiveTab, theme, isDark, toggleTheme }: L
               onMouseLeave={(e) => e.currentTarget.style.color = theme.textMuted}
             >
               <Mail size={20} />
-            </a>
-            <a
-              href="/resume.pdf"
-              download
-              style={{ color: theme.textMuted, textDecoration: 'none', transition: 'color 0.2s' }}
-              onMouseEnter={(e) => e.currentTarget.style.color = '#06b6d4'}
-              onMouseLeave={(e) => e.currentTarget.style.color = theme.textMuted}
-            >
-              <FileText size={20} />
             </a>
           </div>
         </div>
