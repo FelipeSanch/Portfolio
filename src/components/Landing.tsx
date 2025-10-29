@@ -1,4 +1,5 @@
 import { Github, Linkedin, Mail, Sun, Moon } from 'lucide-react'
+import { FaXTwitter } from 'react-icons/fa6'
 import { memo, useState, useEffect } from 'react'
 
 interface LandingProps {
@@ -137,6 +138,16 @@ const Landing = memo(({ activeTab, setActiveTab, theme, isDark, toggleTheme }: L
               onMouseLeave={(e) => e.currentTarget.style.color = theme.textMuted}
             >
               <Github size={20} />
+            </a>
+            <a
+              href="https://x.com/FelipeSanch0826"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: theme.textMuted, textDecoration: 'none', transition: 'color 0.2s' }}
+              onMouseEnter={(e) => e.currentTarget.style.color = '#06b6d4'}
+              onMouseLeave={(e) => e.currentTarget.style.color = theme.textMuted}
+            >
+              <FaXTwitter size={20} />
             </a>
             <a
               href="https://linkedin.com/in/felipesanchez-noguera"
