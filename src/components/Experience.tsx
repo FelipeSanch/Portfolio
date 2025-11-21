@@ -16,7 +16,7 @@ const experiences = [
     period: 'Sep 2025 – Present',
     description: [
       'Selected as 1 of 33 analysts (from 200+ applicants) in Duke\'s competitive undergraduate VC program',
-      'Support due diligence and partner projects with VCs including Maven Ventures, Camber Creek, and Mudita VP',
+      'Support due diligence and partner projects with VCs including Maven Ventures, Camber Creek,Techstars, and Mudita VP',
     ],
   },
   {
