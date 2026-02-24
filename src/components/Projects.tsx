@@ -7,8 +7,8 @@ const projects = [
     period: 'June 2025 – Present',
     description: 'Full-stack Git analytics platform with machine learning-powered merge conflict prediction and ROI calculation engine for engineering bottlenecks.',
     highlights: [
-      'Architected full-stack application using React, TypeScript, Node.js, PostgreSQL, and Docker',
-      'Built ML pipeline for merge conflict prediction using historical repository data',
+      'Architected full-stack application (React, TypeScript, Node.js, PostgreSQL, Docker) that ingests GitHub repository data via OAuth, tracking commit patterns, PR cycles, and code review metrics for 100+ active repositories',
+      'Trained LightGBM classifier on 10K+ historical commits to predict merge conflicts with 76% accuracy using features like branch age, file change overlap, and contributor patterns',
       'Developed ROI calculation engine to quantify engineering bottlenecks and project cost savings',
       'Implemented CI/CD pipeline with GitHub Actions and comprehensive monitoring',
     ],

@@ -20,22 +20,23 @@ const experiences = [
     ],
   },
   {
-    title: 'Asset Management Intern',
+    title: 'Data Analyst Intern',
     company: 'MasTec',
     location: 'Coral Gables, FL',
     period: 'May 2025 – Aug 2025',
     description: [
-      'Analyzed SEC filings (10-K, 10-Q, 8-K) for 40+ companies at Fortune 500 infrastructure firm',
-      'Built Python scripts to automate data extraction, reducing manual review time for financial analysis',
+      'Built Python automation tools (pandas, requests) to extract and parse financial data from SEC EDGAR filings, reducing analysis time across 40+ infrastructure companies',
+      'Designed SQL database schema and ETL pipeline to track revenue trends and debt ratios over time, enabling faster comp analysis for investment team',
+      'Developed data visualization dashboards using Matplotlib/Plotly to present financial metrics to senior analysts',
     ],
   },
   {
-    title: 'ML Team Member',
+    title: 'Project Lead',
     company: 'Duke Applied Machine Learning',
     location: 'Durham, NC',
     period: 'Sep 2024 – Present',
     description: [
-      'Built predictive models (logistic regression, random forest, XGBoost) for customer churn analysis',
+      'Built models (logistic regression, random forest, XGBoost) to predict customer churn; identified contract length and usage patterns as key drivers',
     ],
   },
   {
@@ -44,8 +45,8 @@ const experiences = [
     location: 'Miami, FL',
     period: 'May 2023 – Aug 2023',
     description: [
-      'Developed React components and RESTful APIs for healthcare applications',
-      'Implemented JWT-based authentication in Node.js/Express environment',
+      'Developed patient portal features using React and Node.js, serving 500+ daily active users across the healthcare facility',
+      'Implemented JWT authentication and role-based access control, securing sensitive medical data for compliance with HIPAA standards',
     ],
   },
 ]

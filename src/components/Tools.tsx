@@ -76,8 +76,8 @@ const Tools = memo(({ theme }: ToolsProps) => {
                 e.currentTarget.style.transform = 'translateY(0) scale(1)'
               }}
             >
-              <img 
-                src={tool.logo} 
+              <img
+                src={tool.logo}
                 alt={tool.name}
                 style={{
                   width: '40px',
@@ -143,8 +143,8 @@ const Tools = memo(({ theme }: ToolsProps) => {
                 e.currentTarget.style.transform = 'translateY(0) scale(1)'
               }}
             >
-              <img 
-                src={tool.logo} 
+              <img
+                src={tool.logo}
                 alt={tool.name}
                 style={{
                   width: '40px',
