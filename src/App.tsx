@@ -1,44 +1,31 @@
-import { useState } from 'react'
-import Landing from './components/Landing'
-import Projects from './components/Projects'
-import Experience from './components/Experience'
-import Tools from './components/Tools'
-import Game from './components/Game'
+import { useState, useEffect } from 'react'
+import { getTheme } from './theme'
+import Navbar from './components/Navbar'
+import Hero from './components/Hero'
 
 function App() {
-  const [activeTab, setActiveTab] = useState('projects')
   const [isDark, setIsDark] = useState(true)
+  const theme = getTheme(isDark)
 
-  // Theme colors - only bg and text change
-  const theme = {
-    bg: isDark ? '#111111' : '#ffffff',
-    text: isDark ? '#ffffff' : '#000000',
-    textMuted: isDark ? '#a3a3a3' : '#666666',
-    textDark: isDark ? '#737373' : '#999999',
-    border: isDark ? '#2a2a2a' : '#e5e5e5',
-  }
+  useEffect(() => {
+    document.body.style.background = theme.bg
+  }, [theme.bg])
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: theme.bg, transition: 'background-color 0.3s' }}>
-      <div style={{ maxWidth: '900px', margin: '0 auto' }}>
-        <Landing 
-          activeTab={activeTab} 
-          setActiveTab={setActiveTab}
-          theme={theme}
-          isDark={isDark}
-          toggleTheme={() => setIsDark(!isDark)}
-        />
-        
-        <div style={{ padding: '64px 24px' }}>
-          {activeTab === 'projects' && <Projects theme={theme} />}
-          {activeTab === 'experience' && <Experience theme={theme} />}
-          {activeTab === 'tools' && <Tools theme={theme} />}
-          {activeTab === 'game' && <Game theme={theme} />}
-        </div>
-      </div>
+    <div
+      style={{
+        minHeight: '100vh',
+        background: theme.bg,
+        transition: 'background 0.3s',
+      }}
+    >
+      <Navbar theme={theme} isDark={isDark} toggleTheme={() => setIsDark((d) => !d)} />
+
+      <main style={{ maxWidth: '900px', margin: '0 auto', padding: '0 24px' }}>
+        <Hero theme={theme} />
+      </main>
     </div>
   )
 }
 
 export default App
-
