@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Experience from './components/Experience'
 import Projects from './components/Projects'
+import Leadership from './components/Leadership'
 
 function App() {
   const [isDark, setIsDark] = useState(true)
@@ -27,6 +28,7 @@ function App() {
         <Hero theme={theme} />
         <Experience theme={theme} />
         <Projects theme={theme} />
+        <Leadership theme={theme} />
       </main>
     </div>
   )
