@@ -5,6 +5,7 @@ import Hero from './components/Hero'
 import Experience from './components/Experience'
 import Projects from './components/Projects'
 import Leadership from './components/Leadership'
+import Education from './components/Education'
 
 function App() {
   const [isDark, setIsDark] = useState(true)
@@ -29,6 +30,7 @@ function App() {
         <Experience theme={theme} />
         <Projects theme={theme} />
         <Leadership theme={theme} />
+        <Education theme={theme} />
       </main>
     </div>
   )
