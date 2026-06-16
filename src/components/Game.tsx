@@ -11,7 +11,7 @@ interface GameProps {
 }
 
 const Game = memo(({ theme }: GameProps) => {
-  const isDark = theme.bg === '#111111'
+  const isDark = theme.bg !== '#ffffff'
   const iframeRef = useRef<HTMLIFrameElement>(null)
   
   useEffect(() => {
