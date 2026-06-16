@@ -1,10 +1,11 @@
-import { useState, ComponentType } from 'react'
-import { ChevronDown, Github, ArrowUpRight, ExternalLink } from 'lucide-react'
+import { useState } from 'react'
+import { ChevronDown, Github, ArrowUpRight, ExternalLink, LucideIcon } from 'lucide-react'
 import { Theme, ACCENT, MONO } from '../theme'
 
 export interface Bullet {
-  icon?: ComponentType<{ size?: number; color?: string }>
+  icon?: LucideIcon
   text: string
+  tags?: string[]
 }
 
 export interface CardLink {
@@ -23,6 +24,7 @@ interface TimelineCardProps {
   bullets: Bullet[]
   tags?: string[]
   links?: CardLink[]
+  demo?: React.ReactNode
   defaultOpen?: boolean
 }
 
@@ -37,10 +39,22 @@ const TimelineCard = ({
   bullets,
   tags,
   links,
+  demo,
   defaultOpen = false,
 }: TimelineCardProps) => {
   const [open, setOpen] = useState(defaultOpen)
   const [hover, setHover] = useState(false)
+
+  const pillStyle: React.CSSProperties = {
+    fontSize: '11px',
+    color: theme.pillText,
+    background: theme.pillBg,
+    border: '1px solid rgba(6,182,212,0.2)',
+    borderRadius: '6px',
+    padding: '3px 9px',
+    fontFamily: MONO,
+    whiteSpace: 'nowrap',
+  }
 
   return (
     <div style={{ position: 'relative', paddingLeft: '34px' }}>
@@ -150,21 +164,39 @@ const TimelineCard = ({
           style={{
             display: 'grid',
             gridTemplateRows: open ? '1fr' : '0fr',
-            transition: 'grid-template-rows 0.3s ease',
+            transition: 'grid-template-rows 0.42s cubic-bezier(0.22, 1, 0.36, 1)',
           }}
         >
-          <div style={{ overflow: 'hidden' }}>
-            <div style={{ paddingTop: '16px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+          <div
+            style={{
+              overflow: 'hidden',
+              opacity: open ? 1 : 0,
+              transform: open ? 'translateY(0)' : 'translateY(-6px)',
+              transition: 'opacity 0.35s ease, transform 0.42s cubic-bezier(0.22, 1, 0.36, 1)',
+            }}
+          >
+            <div style={{ paddingTop: '16px', display: 'flex', flexDirection: 'column', gap: '18px' }}>
               {bullets.map((b, i) => {
                 const Icon = b.icon
                 return (
-                  <div key={i} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
-                    <span style={{ marginTop: '3px', flexShrink: 0, color: ACCENT }}>
-                      {Icon ? <Icon size={14} color={ACCENT} /> : <span style={{ color: ACCENT }}>›</span>}
+                  <div key={i} style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+                    <span style={{ marginTop: '1px', flexShrink: 0, color: ACCENT }}>
+                      {Icon ? <Icon size={16} color={ACCENT} /> : <span style={{ color: ACCENT }}>›</span>}
                     </span>
-                    <span style={{ fontSize: '13.5px', color: theme.textMuted, lineHeight: 1.6, fontFamily: MONO }}>
-                      {b.text}
-                    </span>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '9px', minWidth: 0 }}>
+                      <span style={{ fontSize: '13.5px', color: theme.textMuted, lineHeight: 1.65, fontFamily: MONO }}>
+                        {b.text}
+                      </span>
+                      {b.tags && b.tags.length > 0 && (
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '7px' }}>
+                          {b.tags.map((tag) => (
+                            <span key={tag} style={pillStyle}>
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
                   </div>
                 )
               })}
@@ -173,21 +205,16 @@ const TimelineCard = ({
             {tags && tags.length > 0 && (
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '18px' }}>
                 {tags.map((tag) => (
-                  <span
-                    key={tag}
-                    style={{
-                      fontSize: '11.5px',
-                      color: theme.pillText,
-                      background: theme.pillBg,
-                      border: `1px solid rgba(6,182,212,0.2)`,
-                      borderRadius: '6px',
-                      padding: '3px 9px',
-                      fontFamily: MONO,
-                    }}
-                  >
+                  <span key={tag} style={pillStyle}>
                     {tag}
                   </span>
                 ))}
+              </div>
+            )}
+
+            {demo && (
+              <div style={{ marginTop: '20px' }} onClick={(e) => e.stopPropagation()}>
+                {demo}
               </div>
             )}
           </div>

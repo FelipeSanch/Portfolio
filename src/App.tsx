@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import { getTheme } from './theme'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
+import Experience from './components/Experience'
+import Projects from './components/Projects'
 
 function App() {
   const [isDark, setIsDark] = useState(true)
@@ -23,6 +25,8 @@ function App() {
 
       <main style={{ maxWidth: '900px', margin: '0 auto', padding: '0 24px' }}>
         <Hero theme={theme} />
+        <Experience theme={theme} />
+        <Projects theme={theme} />
       </main>
     </div>
   )

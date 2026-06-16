@@ -45,7 +45,7 @@ const Navbar = ({ theme, isDark, toggleTheme }: NavbarProps) => {
         position: 'sticky',
         top: 0,
         zIndex: 50,
-        background: isDark ? 'rgba(13,13,13,0.72)' : 'rgba(255,255,255,0.72)',
+        background: isDark ? 'rgba(24,24,27,0.72)' : 'rgba(255,255,255,0.72)',
         backdropFilter: 'blur(12px)',
         WebkitBackdropFilter: 'blur(12px)',
         borderBottom: `1px solid ${theme.border}`,

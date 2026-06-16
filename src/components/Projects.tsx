@@ -1,162 +1,90 @@
-import { Github, ExternalLink } from 'lucide-react'
-import { memo } from 'react'
+import { Bot, Radio, GitBranch, GitMerge } from 'lucide-react'
+import { Theme } from '../theme'
+import SectionHeader from './SectionHeader'
+import Timeline from './Timeline'
+import TimelineCard, { Bullet, CardLink } from './TimelineCard'
+import ProjectDemo from './ProjectDemo'
+import Reveal from './Reveal'
 
-const projects = [
+interface ProjectsProps {
+  theme: Theme
+}
+
+interface Project {
+  title: string
+  period: string
+  summary: string
+  bullets: Bullet[]
+  links: CardLink[]
+  hasDemo?: { url: string; label: string }
+}
+
+const projects: Project[] = [
+  {
+    title: 'Orbit',
+    period: 'Feb 2026 – Present',
+    summary: 'A multi-agent AI assistant unifying Outlook + Google Calendar behind one chat, across web and SMS.',
+    bullets: [
+      {
+        icon: Bot,
+        text: 'Built a multi-agent AI assistant (Python/FastAPI, Next.js 15, TypeScript, PostgreSQL/Neon) unifying Outlook (Mail, Calendar, To Do) and Google Calendar behind one chat interface; an Agno orchestrator routes queries to 3 specialist agents (Claude Sonnet 4.6) across 20+ tools',
+        tags: ['Python', 'FastAPI', 'Next.js 15', 'Agno', 'Claude', 'PostgreSQL', 'Neon'],
+      },
+      {
+        icon: Radio,
+        text: 'Designed a POST-based SSE streaming protocol with human-in-the-loop approvals for writes, pausing and resuming agent runs across web and SMS (Twilio) channels with shared session state; Fernet-encrypted OAuth tokens with auto-refresh via MSAL',
+        tags: ['SSE', 'Twilio', 'OAuth2', 'MSAL', 'Fernet'],
+      },
+    ],
+    links: [
+      { type: 'github', href: 'https://github.com/FelipeSanch/Orbit' },
+      { type: 'live', href: 'https://orbit-ruby-one.vercel.app' },
+    ],
+    hasDemo: { url: 'https://orbit-ruby-one.vercel.app', label: 'Orbit live demo' },
+  },
   {
     title: 'GitFlow AI Analytics Platform',
-    period: 'June 2025 – Present',
-    description: 'Full-stack Git analytics platform with machine learning-powered merge conflict prediction and ROI calculation engine for engineering bottlenecks.',
-    highlights: [
-      'Architected full-stack application (React, TypeScript, Node.js, PostgreSQL, Docker) that ingests GitHub repository data via OAuth, tracking commit patterns, PR cycles, and code review metrics for 100+ active repositories',
-      'Trained LightGBM classifier on 10K+ historical commits to predict merge conflicts with 76% accuracy using features like branch age, file change overlap, and contributor patterns',
-      'Developed ROI calculation engine to quantify engineering bottlenecks and project cost savings',
-      'Implemented CI/CD pipeline with GitHub Actions and comprehensive monitoring',
+    period: 'Jun 2025 – Aug 2025',
+    summary: 'Git analytics platform with ML-powered merge-conflict prediction at 76% accuracy.',
+    bullets: [
+      {
+        icon: GitBranch,
+        text: 'Built a full-stack analytics platform (React, TypeScript, Node.js, PostgreSQL) that ingests GitHub repository data via OAuth, tracking commit patterns, PR cycles, and code review metrics for 100+ active repositories',
+        tags: ['React', 'TypeScript', 'Node.js', 'PostgreSQL', 'OAuth'],
+      },
+      {
+        icon: GitMerge,
+        text: 'Trained a LightGBM classifier on 10K+ historical commits to predict merge conflicts with 76% accuracy using features like branch age, file change overlap, and contributor patterns',
+        tags: ['LightGBM', 'Machine Learning'],
+      },
     ],
-    tags: ['React', 'TypeScript', 'Node.js', 'PostgreSQL', 'Docker', 'ML', 'CI/CD'],
-    githubUrl: 'https://github.com/FelipeSanch/gitflow',
-    liveUrl: '',
+    links: [{ type: 'github', href: 'https://github.com/FelipeSanch/gitflow' }],
   },
 ]
 
-interface ProjectsProps {
-  theme: {
-    text: string
-    textMuted: string
-    textDark: string
-  }
-}
-
-const Projects = memo(({ theme }: ProjectsProps) => {
-  return (
-    <div>
-      {projects.map((project, index) => (
-        <div 
-          key={index} 
-          style={{ 
-            marginBottom: index !== projects.length - 1 ? '64px' : '0',
-            transition: 'transform 0.2s ease',
-            cursor: 'default'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = 'translateX(4px)'
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = 'translateX(0)'
-          }}
-        >
-          {/* Header */}
-          <div style={{ marginBottom: '16px' }}>
-            <h3 style={{
-              fontSize: '16px',
-              fontWeight: '600',
-              color: theme.text,
-              marginBottom: '4px',
-              letterSpacing: '-0.01em',
-              transition: 'color 0.3s',
-              fontFamily: 'JetBrains Mono, monospace'
-            }}>
-              {project.title}
-            </h3>
-            <p style={{
-              fontSize: '13px',
-              color: theme.textDark,
-              transition: 'color 0.3s',
-              fontFamily: 'JetBrains Mono, monospace'
-            }}>
-              {project.period}
-            </p>
-          </div>
-
-          {/* Description */}
-          <p style={{
-            fontSize: '14px',
-            color: theme.textMuted,
-            lineHeight: '1.6',
-            marginBottom: '14px',
-            transition: 'color 0.3s',
-            fontFamily: 'JetBrains Mono, monospace'
-          }}>
-            {project.description}
-          </p>
-
-          {/* Highlights */}
-          <ul style={{ marginBottom: '16px', paddingLeft: '20px' }}>
-            {project.highlights.map((item, idx) => (
-              <li key={idx} style={{
-                fontSize: '14px',
-                color: theme.textMuted,
-                marginBottom: '8px',
-                lineHeight: '1.5',
-                transition: 'color 0.3s',
-                fontFamily: 'JetBrains Mono, monospace'
-              }}>
-                {item}
-              </li>
-            ))}
-          </ul>
-
-          {/* Tags */}
-          <p style={{
-            fontSize: '13px',
-            color: theme.textDark,
-            marginBottom: '16px',
-            transition: 'color 0.3s',
-            fontFamily: 'JetBrains Mono, monospace'
-          }}>
-            {project.tags.join(' / ')}
-          </p>
-
-          {/* Links */}
-          <div style={{ display: 'flex', gap: '16px' }}>
-            <a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '6px',
-                fontSize: '14px',
-                color: theme.textMuted,
-                textDecoration: 'none',
-                transition: 'color 0.2s',
-                fontFamily: 'JetBrains Mono, monospace'
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.color = '#06b6d4'}
-              onMouseLeave={(e) => e.currentTarget.style.color = theme.textMuted}
-            >
-              <Github size={16} />
-              <span>GitHub</span>
-            </a>
-            {project.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                  fontSize: '14px',
-                  color: theme.textMuted,
-                  textDecoration: 'none',
-                  transition: 'color 0.2s',
-                  fontFamily: 'JetBrains Mono, monospace'
-                }}
-                onMouseEnter={(e) => e.currentTarget.style.color = '#06b6d4'}
-                onMouseLeave={(e) => e.currentTarget.style.color = theme.textMuted}
-              >
-                <ExternalLink size={16} />
-                <span>Live Demo</span>
-              </a>
-            )}
-          </div>
-        </div>
-      ))}
-    </div>
-  )
-})
-
-Projects.displayName = 'Projects'
+const Projects = ({ theme }: ProjectsProps) => (
+  <section id="projects" style={{ padding: '72px 0' }}>
+    <Reveal>
+      <SectionHeader title="Projects" theme={theme} />
+    </Reveal>
+    <Reveal delay={60}>
+      <Timeline theme={theme}>
+        {projects.map((p, i) => (
+          <TimelineCard
+            key={p.title}
+            theme={theme}
+            title={p.title}
+            period={p.period}
+            summary={p.summary}
+            bullets={p.bullets}
+            links={p.links}
+            demo={p.hasDemo ? <ProjectDemo theme={theme} url={p.hasDemo.url} label={p.hasDemo.label} /> : undefined}
+            defaultOpen={i === 0}
+          />
+        ))}
+      </Timeline>
+    </Reveal>
+  </section>
+)
 
 export default Projects

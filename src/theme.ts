@@ -15,13 +15,13 @@ export interface Theme {
 export const getTheme = (isDark: boolean): Theme =>
   isDark
     ? {
-        bg: '#0d0d0d',
-        bgElevated: '#141414',
+        bg: '#18181b',
+        bgElevated: '#1f1f23',
         text: '#fafafa',
-        textMuted: '#a3a3a3',
-        textDark: '#6b6b6b',
-        border: '#262626',
-        card: '#141414',
+        textMuted: '#a1a1aa',
+        textDark: '#71717a',
+        border: '#2c2c31',
+        card: '#1d1d20',
         pillBg: 'rgba(6, 182, 212, 0.1)',
         pillText: '#67e8f9',
       }
