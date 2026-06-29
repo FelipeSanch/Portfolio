@@ -1,5 +1,4 @@
 import {
-  FileSpreadsheet,
   Workflow,
   FileDown,
   Database,
@@ -37,11 +36,6 @@ const jobs: Job[] = [
     period: 'May 2026 – Present',
     summary: 'Building data + automation tooling behind an AI agent for QSR franchises.',
     bullets: [
-      {
-        icon: FileSpreadsheet,
-        text: 'Built a CSV classification and parsing service the AI agent invokes as a tool, normalizing inbound franchise data that arrives in many inconsistent formats into a structured schema',
-        tags: ['Python', 'Pandas', 'LLM Tools'],
-      },
       {
         icon: Workflow,
         text: 'Architected the CRM automation layer (n8n on Railway, Postgres) feeding an AI agent, and a LinkedIn outreach pipeline linked to a market-intelligence service surfacing current QSR franchise news',
