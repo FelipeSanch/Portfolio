@@ -1,4 +1,4 @@
-import { Bot, Radio, GitBranch, GitMerge } from 'lucide-react'
+import { Bot, Radio, GitBranch, GitMerge, FileSpreadsheet, Layers } from 'lucide-react'
 import { Theme } from '../theme'
 import SectionHeader from './SectionHeader'
 import Timeline from './Timeline'
@@ -12,6 +12,7 @@ interface ProjectsProps {
 
 interface Project {
   title: string
+  role?: string
   period: string
   summary: string
   bullets: Bullet[]
@@ -41,6 +42,25 @@ const projects: Project[] = [
       { type: 'live', href: 'https://orbit-ruby-one.vercel.app' },
     ],
     hasDemo: { url: 'https://orbit-ruby-one.vercel.app', label: 'Orbit live demo' },
+  },
+  {
+    title: 'Grove Workflows',
+    role: 'Co-Founder',
+    period: 'May 2026 – Present',
+    summary: 'Turning real-estate paperwork into clean financials, from owner statements to K-1s.',
+    bullets: [
+      {
+        icon: FileSpreadsheet,
+        text: 'Automated owner-statement processing for a 50-unit residential portfolio: uploaded PDFs become P&L, expense, and cash-on-cash reports, cutting a week of work to under an hour',
+        tags: ['PDF Parsing', 'Automation', 'Reporting'],
+      },
+      {
+        icon: Layers,
+        text: 'Architecting a single-codebase, per-client deployment model with isolated databases for K-1 and sponsor-statement ingestion',
+        tags: ['Multi-tenant', 'Per-client Deploys', 'Isolated DBs'],
+      },
+    ],
+    links: [],
   },
   {
     title: 'GitFlow AI Analytics Platform',
@@ -75,6 +95,7 @@ const Projects = ({ theme }: ProjectsProps) => (
             theme={theme}
             title={p.title}
             period={p.period}
+            role={p.role}
             summary={p.summary}
             bullets={p.bullets}
             links={p.links}

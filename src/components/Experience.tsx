@@ -1,8 +1,10 @@
 import {
   Workflow,
+  Tags,
+  MousePointerClick,
+  Plug,
   FileDown,
   Database,
-  TrendingUp,
   LayoutDashboard,
   ShieldCheck,
   Server,
@@ -33,12 +35,27 @@ const jobs: Job[] = [
     href: 'https://tryclave.ai',
     role: 'Software Engineering Intern',
     location: 'Miami, FL',
-    period: 'May 2026 – Present',
-    summary: 'Building data + automation tooling behind an AI agent for QSR franchises.',
+    period: 'May 2026 – Aug 2026',
+    summary: 'Built the data, integrations, and agent tooling behind an AI copilot for QSR franchises.',
     bullets: [
       {
+        icon: Tags,
+        text: 'Replaced a 216-rule deterministic menu classifier with an agent-driven taxonomy running on raw POS data, pulling it out of the ingestion transforms and taking coverage from 3 tenants to all 29 (10K+ items)',
+        tags: ['LLM Agents', 'Taxonomy', 'POS Data'],
+      },
+      {
+        icon: MousePointerClick,
+        text: 'Built a Chrome extension agent that drives Square on its own, intercepts the report APIs, and emails multi-page reports in ~20s, with read-only enforcement and grounding checks keeping it safe',
+        tags: ['Chrome Extension', 'Agents', 'Square'],
+      },
+      {
+        icon: Plug,
+        text: 'Reverse engineered PAR Brink POS endpoints from network traffic and shipped a production connector, onboarding 30 Smoothie King stores',
+        tags: ['Reverse Engineering', 'Network Analysis', 'PAR Brink'],
+      },
+      {
         icon: Workflow,
-        text: 'Architected the CRM automation layer (n8n on Railway, Postgres) feeding an AI agent, and a LinkedIn outreach pipeline linked to a market-intelligence service surfacing current QSR franchise news',
+        text: 'Architected the CRM automation layer (n8n on Railway, Postgres) feeding the AI agent, plus a LinkedIn outreach pipeline wired to a market-intelligence service that surfaces QSR franchise news',
         tags: ['n8n', 'Railway', 'PostgreSQL', 'LinkedIn API'],
       },
     ],
@@ -52,18 +69,13 @@ const jobs: Job[] = [
     bullets: [
       {
         icon: FileDown,
-        text: 'Built Python automation tools (pandas, requests) to extract and parse financial data from SEC EDGAR filings across 40+ infrastructure companies, reducing analysis time for the investment team',
+        text: 'Built Python automation tools (pandas, requests) to extract and parse financial data from SEC EDGAR filings across 40 infrastructure companies, reducing analysis time for the investment team',
         tags: ['Python', 'pandas', 'requests'],
       },
       {
         icon: Database,
         text: 'Designed a SQL database schema and ETL pipeline to track revenue trends and debt ratios over time, enabling faster comp analysis',
         tags: ['SQL', 'ETL', 'PostgreSQL'],
-      },
-      {
-        icon: TrendingUp,
-        text: 'Conducted comparable company analyses leveraging the parsed financial data, benchmarking valuation metrics across infrastructure subsectors and surfacing outliers for investment team review',
-        tags: ['Valuation', 'Comps'],
       },
     ],
   },
