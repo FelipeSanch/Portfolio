@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { ArrowUpRight } from 'lucide-react'
 import { Theme, ACCENT, MONO } from '../theme'
 
@@ -6,16 +6,30 @@ interface ProjectDemoProps {
   theme: Theme
   url: string
   label: string
-  height?: number
 }
+
+// The site renders at a desktop viewport, then scales down to fit the card,
+// so the preview shows the real desktop layout instead of a cramped mobile one.
+const VIEWPORT_W = 1440
+const VIEWPORT_H = 900
 
 /* A live preview of a deployed project, framed like a browser window.
    The iframe is non-interactive (pointer-events: none) and a click overlay
    sits on top — so it can't hijack page scroll, and clicking opens the live
    site. Gives a real, animated preview without the jank of an embedded app. */
-const ProjectDemo = ({ theme, url, label, height = 420 }: ProjectDemoProps) => {
+const ProjectDemo = ({ theme, url, label }: ProjectDemoProps) => {
   const [loaded, setLoaded] = useState(false)
   const [hover, setHover] = useState(false)
+  const [scale, setScale] = useState(0)
+  const frameRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const el = frameRef.current
+    if (!el) return
+    const ro = new ResizeObserver(([entry]) => setScale(entry.contentRect.width / VIEWPORT_W))
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
   const host = url.replace(/^https?:\/\//, '').replace(/\/$/, '')
 
   return (
@@ -80,7 +94,15 @@ const ProjectDemo = ({ theme, url, label, height = 420 }: ProjectDemoProps) => {
       </div>
 
       {/* Live preview + click overlay */}
-      <div style={{ position: 'relative', height: `${height}px`, background: theme.bg }}>
+      <div
+        ref={frameRef}
+        style={{
+          position: 'relative',
+          aspectRatio: `${VIEWPORT_W} / ${VIEWPORT_H}`,
+          overflow: 'hidden',
+          background: theme.bg,
+        }}
+      >
         {!loaded && (
           <div
             style={{
@@ -103,14 +125,17 @@ const ProjectDemo = ({ theme, url, label, height = 420 }: ProjectDemoProps) => {
           title={label}
           loading="lazy"
           tabIndex={-1}
+          scrolling="no"
           onLoad={() => setLoaded(true)}
           style={{
-            width: '100%',
-            height: '100%',
+            width: `${VIEWPORT_W}px`,
+            height: `${VIEWPORT_H}px`,
+            transform: `scale(${scale})`,
+            transformOrigin: 'top left',
             border: 'none',
             display: 'block',
             pointerEvents: 'none', // never traps scroll or reacts to the cursor
-            opacity: loaded ? 1 : 0,
+            opacity: loaded && scale ? 1 : 0,
             transition: 'opacity 0.5s ease',
           }}
         />

@@ -60,7 +60,8 @@ const projects: Project[] = [
         tags: ['Multi-tenant', 'Per-client Deploys', 'Isolated DBs'],
       },
     ],
-    links: [],
+    links: [{ type: 'live', href: 'https://groveworkflows.com' }],
+    hasDemo: { url: 'https://groveworkflows.com', label: 'Grove Workflows live site' },
   },
   {
     title: 'GitFlow AI Analytics Platform',
